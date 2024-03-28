@@ -7,8 +7,6 @@
   <groupId>com.ethan5</groupId>
   <artifactId>api</artifactId>
   <version>1.0.0</version>
-  <name>api</name>
-  <!-- <url>http://www.example.com</url> -->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
