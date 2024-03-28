@@ -33,15 +33,21 @@ public class MainActivity extends AppCompatActivity {
     public static final int AUTH_CODE_REQUEST_CODE = 1;
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
+
+    public static JSONObject userProfile;
+
     private String mAccessToken, mAccessCode;
     private Call mCall;
-
-    private TextView tokenTextView, codeTextView, profileTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button signInBtn = findViewById(R.id.buttonAuthSignIn);
+        signInBtn.setOnClickListener((v) -> {
+            getToken();
+        });
     }
 
     /**
@@ -79,23 +85,22 @@ public class MainActivity extends AppCompatActivity {
         // Check which request code is present (if any)
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
-            setTextAsync(mAccessToken, tokenTextView);
-
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
-            setTextAsync(mAccessCode, codeTextView);
         }
+
+        getUserProfile();
     }
 
     /**
      * Get user profile
      * This method will get the user profile using the token
      */
-    public void onGetUserProfileClicked() {
-        if (mAccessToken == null) {
+    public void getUserProfile() {
+        /*if (mAccessToken == null) {
             Toast.makeText(this, "You need to get an access token first!", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
 
         // Create a request to get the user profile
         final Request request = new Request.Builder()
@@ -117,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    final JSONObject jsonObject = new JSONObject(response.body().string());
-                    setTextAsync(jsonObject.toString(3), profileTextView);
+                    userProfile = new JSONObject(response.body().string());
+                    //setTextAsync(jsonObject.toString(3), profileTextView);
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
                     Toast.makeText(MainActivity.this, "Failed to parse data, watch Logcat for more details",
