@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ethan5.dto.UserRequest;
-import com.ethan5.entity.User;
-import com.ethan5.service.UserService;
 
 @RestController
-@RequestMapping("v1/user")
+@RequestMapping("v1/playlist")
 public class PlaylistController {
     private PlaylistService service;
 
