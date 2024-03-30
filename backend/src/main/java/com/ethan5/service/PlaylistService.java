@@ -19,12 +19,14 @@ import java.util.stream.Collectors;
 @Service
 public class PlaylistService {
     private PlaylistRepository repository;
+    private UserService userService;
 
     @Autowired
     private RestTemplate restTemplate;
 
-    public PlaylistService(PlaylistRepository repository) {
+    public PlaylistService(PlaylistRepository repository, UserService userService) {
         this.repository = repository;
+        this.userService = userService;
     }
 
     public String createPlaylist(String id) {
@@ -38,6 +40,7 @@ public class PlaylistService {
     }
 
     public void getUserTopTracks(String userId) {
+//        String accessToken = userService.readUser(userId).getAccessToken();
         String accessToken = "";
         try {
             // get/parse tracks into list
