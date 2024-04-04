@@ -1,33 +1,57 @@
 package com.ethan5.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @Entity
 @Table(name = "\"playlist\"")
 public class Playlist {
     @Id
-    private String id;
-    private String userId;
-    private List<String> tracks;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "playlist_track",
+            joinColumns = @JoinColumn(name = "playlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "track_id"))
+    private Set<Track> tracks = new HashSet<>();
 
-    public Playlist(String id) {
-        this.id = id;
-    }
-
-    public List<String> getTracks() {
+    public Set<Track> getTracks() {
         return tracks;
     }
 
-    public void setTracks(List<String> tracks) {
+    public void setTracks(Set<Track> tracks) {
         this.tracks = tracks;
     }
 
-    public String getId() {
+    public void addTrack(Track track) {
+        this.tracks.add(track);
+        track.getPlaylists().add(this);
+    }
+
+
+    public void removeTrack(Track track) {
+        this.tracks.remove(track);
+        track.getPlaylists().remove(this);
+    }
+
+    @OneToOne
+    @JsonIgnore
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Long getId() {
         return id;
     }
 }
