@@ -2,19 +2,15 @@ package com.ethan5.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TracksWrapper {
-        @JsonProperty("items")
-        private List<TrackInfo> tracks;
-
-        public List<TrackInfo> getTracks() {
-            return tracks;
-        }
-
-        public void setTracks(List<TrackInfo> tracks) {
-            this.tracks = tracks;
-        }
+    @JsonProperty("items")
+    private List<TrackInfo> tracks;
 }

@@ -1,21 +1,19 @@
 package com.ethan5.controller;
 
 import com.ethan5.service.PlaylistService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("v1/playlist")
 public class PlaylistController {
     private PlaylistService service;
 
-    public PlaylistController(PlaylistService service) {
-        this.service = service;
-    }
-
-//    @PostMapping()
-//    public String createPlaylist(@RequestBody PlaylistRequest req) {
-//        return service.createPlaylist(req.id());
+//    @PostMapping("{id}")
+//    public String createPlaylist(@PathVariable("id") String id) {
+//        return service.createPlaylist(id);
 //    }
 
 
@@ -23,6 +21,4 @@ public class PlaylistController {
 //    public Playlist readPlaylist(@PathVariable("id") String id) {
 //        return service.readPlaylist(id);
 //    }
-
-
 }

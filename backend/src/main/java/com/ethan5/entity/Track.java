@@ -1,16 +1,25 @@
 package com.ethan5.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "\"track\"")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Track {
-
     @Id
     private String id;
     private String name; // Matches the "name" field in the JSON
@@ -18,40 +27,4 @@ public class Track {
     @ManyToMany(mappedBy = "tracks")
     @JsonIgnore
     private Set<Playlist> playlists = new HashSet<>();
-
-    public Track(String name, String id) {
-        this.name = name;
-        this.id = id;
-    }
-
-    protected Track() {
-    }
-
-    public void addPlaylist(Playlist playlist) {
-        this.playlists.add(playlist);
-        playlist.getTracks().add(this);
-    }
-
-    public void removePlaylist(Playlist playlist) {
-        this.playlists.remove(playlist);
-        playlist.getTracks().remove(this);
-    }
-
-    public Set<Playlist> getPlaylists() {
-//        return Collections.unmodifiableSet(playlists); // This makes the returned set read-only
-        return playlists;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    // Getter and Setter
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

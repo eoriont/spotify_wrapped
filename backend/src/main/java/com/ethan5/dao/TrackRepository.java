@@ -1,6 +1,5 @@
 package com.ethan5.dao;
 
-import com.ethan5.entity.Playlist;
 import com.ethan5.entity.Track;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
