@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow"
+    tools:context=".frame4">
+
+    <ImageView
+        android:layout_width="638dp"
+        android:layout_height="520dp"
+        android:rotation="181"
+        android:src="@drawable/rectangle12"
+        tools:layout_editor_absoluteX="-146dp"
+        tools:layout_editor_absoluteY="258dp" />
+
+    <ImageView
+        android:layout_width="638dp"
+        android:layout_height="520dp"
+        android:src="@drawable/rectangle12"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="384dp" />
+
+
+    <ImageView
+        android:layout_width="638dp"
+        android:layout_height="520dp"
+        android:src="@drawable/rectangle12"
+        tools:layout_editor_absoluteX="-90dp"
+        tools:layout_editor_absoluteY="-15dp" />
+
+    <ImageView
+        android:layout_width="655dp"
+        android:layout_height="536dp"
+        android:src="@drawable/rectangle12"
+        tools:layout_editor_absoluteX="-74dp"
+        tools:layout_editor_absoluteY="156dp" />
+
+    <ImageView
+        android:layout_width="638dp"
+        android:layout_height="520dp"
+        android:src="@drawable/rectangle12"
+        tools:layout_editor_absoluteX="-179dp"
+        tools:layout_editor_absoluteY="-123dp" />
+
+    <ImageView
+        android:layout_width="691dp"
+        android:layout_height="526dp"
+        android:src="@drawable/star1"
+        tools:layout_editor_absoluteX="-140dp"
+        tools:layout_editor_absoluteY="81dp" />
+
+    <ImageView
+        android:layout_width="691dp"
+        android:layout_height="526dp"
+        android:rotation="107"
+        android:src="@drawable/star1"
+        tools:layout_editor_absoluteX="-119dp"
+        tools:layout_editor_absoluteY="102dp" />
+
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextShadowStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Your Top Artists"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor=
+
+            "#141414"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    //"bold"
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/TextShadowStyle"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:gravity="center"
+        android:text="#1"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor=
+
+            "#141414"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/TextShadowStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="2dp"
+        android:gravity="center"
+        android:text="#2"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor=
+
+            "#141414"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/TextShadowStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="1dp"
+        android:gravity="center"
+        android:text="#3"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor=
+
+            "#141414"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
