@@ -23,6 +23,7 @@ public class AuthService {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Content-Type", "application/json");
         headers.add("Authorization", "Bearer " + token);
+
         LoginResponse res = template.exchange("https://api.spotify.com/v1/me",
                         HttpMethod.GET,
                         new HttpEntity<>(headers),
