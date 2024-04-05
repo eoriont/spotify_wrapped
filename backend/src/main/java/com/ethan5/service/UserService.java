@@ -1,19 +1,17 @@
 package com.ethan5.service;
 
-import org.springframework.stereotype.Service;
 import com.ethan5.dao.UserRepository;
 import com.ethan5.entity.User;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class UserService {
     private UserRepository repository;
 
-    public UserService(UserRepository repository) {
-        this.repository = repository;
-    }
-
     public String createUser(String id) {
-        User user = new User(id);
+        User user = User.builder().id(id).build();
         repository.saveAndFlush(user);
         return user.getId();
     }

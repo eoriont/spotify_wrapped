@@ -1,14 +1,17 @@
 package com.ethan5.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,11 +19,12 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "\"user\"")
-public class User {
+public class Track {
     @Id
     private String id;
+    private String name; // Matches the "name" field in the JSON
 
-    @OneToOne(mappedBy = "user")
-    private Playlist playlist;
+    @ManyToMany(mappedBy = "tracks")
+    @JsonIgnore
+    private Set<Playlist> playlists = new HashSet<>();
 }
