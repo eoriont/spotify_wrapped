@@ -1,6 +1,6 @@
 package com.ethan5.service;
 
-import com.ethan5.dto.Artist;
+import com.ethan5.dto.ArtistInfo;
 import com.ethan5.dto.ArtistWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ArtistService {
     private RestTemplate template;
 
-    public List<Artist> readTopArtists(String authHeader) {
+    public List<ArtistInfo> readTopArtists(String authHeader) {
         String url = "https://api.spotify.com/v1/me/top/artists?limit=3";
         String token = authHeader.substring(7);
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();

@@ -5,6 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public record ArtistWrapper(
-        @JsonProperty("items") List<Artist> artists
+        @JsonProperty("items") List<ArtistInfo> artists
 ) {
 }
