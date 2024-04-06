@@ -1,7 +1,6 @@
 package com.ethan5.dto;
 
-public record TrackInfo(
-        String id,
+public record ArtistInfo(
         String name
 ) {
 }
