@@ -5,6 +5,7 @@ import com.ethan5.service.TrackService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +18,11 @@ import java.util.List;
 public class TrackController {
     private TrackService service;
 
-    @GetMapping("top-tracks")
-    public List<TrackInfo> readTopTracks(@RequestHeader("Authorization") String authHeader) throws JsonProcessingException {
-        return service.readTopTracks(authHeader);
+    @GetMapping("{id}/top-tracks")
+    public List<TrackInfo> readTopTracks(
+            @PathVariable("id") String id,
+            @RequestHeader("Authorization") String authHeader
+    ) throws JsonProcessingException {
+        return service.readTopTracks(id, authHeader);
     }
 }

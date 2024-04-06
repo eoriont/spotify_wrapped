@@ -21,7 +21,7 @@ public class TrackService {
     private TrackRepository repository;
     private RestTemplate template;
 
-    public List<TrackInfo> readTopTracks(String authHeader) throws JsonProcessingException {
+    public List<TrackInfo> readTopTracks(String id, String authHeader) throws JsonProcessingException {
         String url = "https://api.spotify.com/v1/me/top/tracks?limit=3";
 
         HttpHeaders headers = new HttpHeaders();
