@@ -1,18 +1,13 @@
 package com.example.spotifywrappedapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
@@ -40,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
 
-    public static JSONObject userProfile;
+//    public static JSONObject userProfile;
 
     private String mAccessToken, mAccessCode;
     private Call mCall;
@@ -91,7 +86,11 @@ public class MainActivity extends AppCompatActivity {
         // Check which request code is present (if any)
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
-            Log.d("somethign", mAccessToken);
+
+            // TODO: For now :(
+            UserData userData = new UserData(getApplication());
+            userData.setToken(mAccessToken);
+            Log.d("Access Token", mAccessToken);
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
         }
@@ -110,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         }*/
 
         // Create a request to get the user profile
+        // TODO: make a cache
         final Request request = new Request.Builder()
                 .url("http://10.0.2.2:8080/v1/auth/login")
                 .post(RequestBody.create(null, ""))
@@ -129,16 +129,21 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    userProfile = new JSONObject(response.body().string());
-                    //setTextAsync(jsonObject.toString(3), profileTextView);
-                } catch (JSONException e) {
-                    Log.d("JSON", "Failed to parse data: " + e);
-//                    Toast.makeText(MainActivity.this, "Failed to parse data, watch Logcat for more details",
-//                            Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful()) {
+                    UserData userData = new UserData(getApplication());
+                    userData.setId(response.body().string());
+                    onLoginSucceed();
+                } else {
+                    //TODO
                 }
             }
         });
+    }
+
+    private void onLoginSucceed() {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     /**

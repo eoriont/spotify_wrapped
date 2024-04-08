@@ -14,8 +14,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".frame4"
-            android:exported="false" />
+            android:name=".DashboardActivity"
+            android:exported="false"
+            android:label="@string/title_dashboard" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
