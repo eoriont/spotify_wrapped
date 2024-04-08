@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int AUTH_CODE_REQUEST_CODE = 1;
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
-
-//    public static JSONObject userProfile;
 
     private String mAccessToken, mAccessCode;
     private Call mCall;
@@ -125,10 +124,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    private void setTextAsync(final String text, TextView textView) {
-        runOnUiThread(() -> textView.setText(text));
     }
 
     private AuthorizationRequest getAuthenticationRequest(

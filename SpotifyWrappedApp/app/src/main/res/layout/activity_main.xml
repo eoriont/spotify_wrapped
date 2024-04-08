@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
@@ -69,5 +70,6 @@
             android:maxHeight="80dp"
             android:scaleType="fitCenter"
             android:src="@drawable/spotify_icon2" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
