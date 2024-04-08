@@ -1,18 +1,13 @@
 package com.example.spotifywrappedapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
@@ -132,6 +127,17 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     userProfile = new JSONObject(response.body().string());
                     //setTextAsync(jsonObject.toString(3), profileTextView);
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+                    SharedPreferences.Editor userData = sharedPreferences.edit();
+                    userData.putString("display_name", userProfile.getString("display_name"));
+                    userData.putString("id", userProfile.getString("id"));
+                    userData.putString("email", userProfile.getString("email"));
+                    // etc.
+                    userData.apply();
+
+
+                    onLoginSucceed();
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
 //                    Toast.makeText(MainActivity.this, "Failed to parse data, watch Logcat for more details",
@@ -139,6 +145,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void onLoginSucceed() {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     /**
