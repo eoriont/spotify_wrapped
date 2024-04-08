@@ -9,13 +9,13 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class AppConfig {
     @Value("${spotify.client.id}")
-    public String clientId;
+    private String clientId;
 
     @Value("${spotify.client.secret}")
-    public String clientSecret;
+    private String clientSecret;
 
     @Value("${spotify.redirect.uri}")
-    public String redirectUri;
+    private String redirectUri;
 
     @Bean
     public RestTemplate template() {

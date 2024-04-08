@@ -1,0 +1,33 @@
+name: backend-ci
+
+on:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Create application.properties
+        working-directory: ./backend/src/main/resources
+        run: |
+          touch application.properties
+          echo "spring.application.name=personal-website-api" >> ./application.properties
+          echo "spring.datasource.url=${{ secrets.API_SPRING_DATASOURCE_URL }}" >> ./application.properties
+          echo "spring.datasource.username=${{ secrets.API_SPRING_DATASOURCE_USERNAME }}" >> ./application.properties
+          echo "spring.datasource.password=${{ secrets.API_SPRING_DATASOURCE_PASSWORD }}" >> ./application.properties
+          echo "spring.jpa.hibernate.ddl-auto=validate" >> ./application.properties
+
+      - name: Build & Test
+        working-directory: ./backend
+        run: mvn -ntp clean verify 

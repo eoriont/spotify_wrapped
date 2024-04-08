@@ -54,7 +54,11 @@ public class ArtistService {
             artists.add(artist);
         });
 
-        historyService.createHistory(id, Optional.empty(), Optional.of(artists));
+        historyService.createHistory(
+                id,
+                Optional.empty(),
+                Optional.of(artists)
+        );
         return artists;
     }
 }
