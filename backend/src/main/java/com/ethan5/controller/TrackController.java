@@ -1,6 +1,6 @@
 package com.ethan5.controller;
 
-import com.ethan5.dto.TrackInfo;
+import com.ethan5.entity.Track;
 import com.ethan5.service.TrackService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
@@ -19,10 +19,10 @@ public class TrackController {
     private TrackService service;
 
     @GetMapping("{id}/top-tracks")
-    public List<TrackInfo> readTopTracks(
+    public List<Track> readTopTracks(
             @PathVariable("id") String id,
-            @RequestHeader("Authorization") String authHeader
+            @RequestHeader("Authorization") String bearerToken
     ) throws JsonProcessingException {
-        return service.readTopTracks(id, authHeader);
+        return service.readTopTracks(id, bearerToken);
     }
 }

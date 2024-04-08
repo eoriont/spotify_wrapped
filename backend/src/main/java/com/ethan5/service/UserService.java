@@ -12,7 +12,7 @@ public class UserService {
 
     public String createUser(String id) {
         User user = User.builder().id(id).build();
-        repository.saveAndFlush(user);
+        repository.save(user);
         return user.getId();
     }
 

@@ -16,10 +16,10 @@ public class AuthService {
     private UserService service;
     private RestTemplate template;
 
-    public void login(String token) {
+    public String login(String bearerToken) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Content-Type", "application/json");
-        headers.add("Authorization", "Bearer " + token);
+        headers.add("Authorization", "Bearer " + bearerToken.substring(7));
 
         LoginResponse res = template.exchange(
                 "https://api.spotify.com/v1/me",
@@ -31,7 +31,9 @@ public class AuthService {
         User user = service.readUser(res.id());
 
         if (user == null) {
-            service.createUser(res.id());
+            return service.createUser(res.id());
         }
+
+        return user.getId();
     }
 }

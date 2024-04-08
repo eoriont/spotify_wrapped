@@ -1,6 +1,6 @@
 package com.ethan5.controller;
 
-import com.ethan5.dto.ArtistInfo;
+import com.ethan5.entity.Artist;
 import com.ethan5.service.ArtistService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +19,10 @@ public class ArtistController {
     private final ArtistService service;
 
     @GetMapping("{id}/top-artists")
-    public List<ArtistInfo> readTopArtists(@PathVariable("id") String id,
-                                           @RequestHeader("Authorization") String authHeader
+    public List<Artist> readTopArtists(
+            @PathVariable("id") String id,
+            @RequestHeader("Authorization") String bearerToken
     ) {
-        return service.readTopArtists(id, authHeader);
+        return service.readTopArtists(id, bearerToken);
     }
 }

@@ -1,9 +1,9 @@
 package com.ethan5.dao;
 
-import com.ethan5.entity.Playlist;
+import com.ethan5.entity.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlaylistRepository extends JpaRepository<Playlist, String> {
+public interface ArtistRepository extends JpaRepository<Artist, String> {
 }
