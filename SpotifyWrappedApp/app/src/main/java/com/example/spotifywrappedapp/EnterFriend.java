@@ -12,7 +12,7 @@ import com.example.spotifywrappedapp.databinding.ActivityEnterFriendBinding;
 
 public class EnterFriend extends AppCompatActivity {
 
-    private String username = "hello";
+    private String username;
     private ActivityEnterFriendBinding binding;
 
     @Override
