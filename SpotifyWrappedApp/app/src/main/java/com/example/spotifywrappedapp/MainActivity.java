@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
 
-    public static JSONObject userProfile;
+//    public static JSONObject userProfile;
 
     private String mAccessToken, mAccessCode;
     private Call mCall;
@@ -86,7 +86,11 @@ public class MainActivity extends AppCompatActivity {
         // Check which request code is present (if any)
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
-            Log.d("somethign", mAccessToken);
+
+            // TODO: For now :(
+            UserData userData = new UserData(getApplication());
+            userData.setToken(mAccessToken);
+            Log.d("Access Token", mAccessToken);
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
         }
@@ -105,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         }*/
 
         // Create a request to get the user profile
+        // TODO: make a cache
         final Request request = new Request.Builder()
                 .url("http://10.0.2.2:8080/v1/auth/login")
                 .post(RequestBody.create(null, ""))
@@ -124,24 +129,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    userProfile = new JSONObject(response.body().string());
-                    //setTextAsync(jsonObject.toString(3), profileTextView);
-
-                    SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
-                    SharedPreferences.Editor userData = sharedPreferences.edit();
-                    userData.putString("display_name", userProfile.getString("display_name"));
-                    userData.putString("id", userProfile.getString("id"));
-                    userData.putString("email", userProfile.getString("email"));
-                    // etc.
-                    userData.apply();
-
-
+                if (response.isSuccessful()) {
+                    UserData userData = new UserData(getApplication());
+                    userData.setId(response.body().string());
                     onLoginSucceed();
-                } catch (JSONException e) {
-                    Log.d("JSON", "Failed to parse data: " + e);
-//                    Toast.makeText(MainActivity.this, "Failed to parse data, watch Logcat for more details",
-//                            Toast.LENGTH_SHORT).show();
+                } else {
+                    //TODO
                 }
             }
         });

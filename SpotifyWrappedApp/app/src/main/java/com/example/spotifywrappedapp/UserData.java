@@ -15,4 +15,20 @@ public class UserData {
         return sharedPreferences.getString("display_name", "USERNAME_NOT_SET!!");
     }
 
+    public void setToken(String token) {
+        sharedPreferences.edit().putString("token", token).apply();
+    }
+
+    public String getToken() {
+        return sharedPreferences.getString("token", "xxxx");
+    }
+
+    public void setId(String id) {
+        sharedPreferences.edit().putString("id", id).apply();
+    }
+
+    public String getId() {
+        return sharedPreferences.getString("id", "xxxxx");
+    }
+
 }
