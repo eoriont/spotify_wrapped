@@ -23,7 +23,7 @@ public class EnterFriend extends AppCompatActivity {
         View root = binding.getRoot();
         EditText enterFriend = binding.enterFriend;
         Button Find = binding.Find;
-        //saves entry
+        //saves entry as username
         Find.setOnClickListener(v -> username = enterFriend.getText().toString());
     }
 
