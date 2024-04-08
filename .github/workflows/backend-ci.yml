@@ -30,4 +30,4 @@ jobs:
 
       - name: Build & Test
         working-directory: ./backend
-        run: mvn -ntp clean verify 
+        run: mvn -ntp clean verify
