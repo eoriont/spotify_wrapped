@@ -14,8 +14,7 @@ public class AuthController {
     private AuthService service;
 
     @PostMapping("login")
-    public void login(@RequestHeader("Authorization") String authHeader) {
-        String token = authHeader.substring(7);
-        service.login(token);
+    public String login(@RequestHeader("Authorization") String bearerToken) {
+        return service.login(bearerToken);
     }
 }
