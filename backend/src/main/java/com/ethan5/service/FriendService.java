@@ -6,6 +6,9 @@ import com.ethan5.entity.Friend;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class FriendService {
@@ -18,5 +21,14 @@ public class FriendService {
                 .user2Id(req.user2Id())
                 .build();
         repository.save(friendship);
+    }
+
+    public void deleteFriend(String id1, String id2) {
+        Optional<Friend> f = repository.findByUser1IdAndUser2Id(id1, id2);
+        f.ifPresent(repository::delete);
+    }
+
+    public List<Friend> getFriendsList(String id) {
+        return repository.findByUser1Id(id);
     }
 }
