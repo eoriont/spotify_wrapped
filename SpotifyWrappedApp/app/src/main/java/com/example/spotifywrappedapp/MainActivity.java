@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Shift to added page
+     * Shift to the added page
      */
     private void configureNextButton() {
         Button EnterName =  (Button) findViewById(R.id.EnterName);
