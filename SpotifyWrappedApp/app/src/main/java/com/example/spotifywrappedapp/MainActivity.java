@@ -147,6 +147,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Shift to added page
+     */
+    private void configureNextButton() {
+        Button EnterName =  (Button) findViewById(R.id.EnterName);
+        EnterName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, EnterFriend.class));
+            }
+        });
+    }
+
     @Override
     protected void onDestroy() {
         cancelCall();

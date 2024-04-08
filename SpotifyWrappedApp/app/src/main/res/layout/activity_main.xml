@@ -53,10 +53,30 @@
                 android:id="@+id/buttonAuthSignIn"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#1CCC5D"
-                android:text="Sign In"
-                android:textSize="20dp" />
-        </RelativeLayout>
+                android:layout_gravity="center_vertical"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="Get User Profile"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Added"
+            android:layout_width="match_parent"
+            android:layout_height="339dp"
+            android:accessibilityLiveRegion="assertive"
+            android:orientation="vertical"
+            tools:visibility="visible">
+
+            <Button
+                android:id="@+id/EnterName"
+                android:layout_width="107dp"
+                android:layout_height="40dp"
+                android:layout_margin="168dp"
+                android:text="Enter Friend:" />
+
+        </LinearLayout>
 
         <ImageView
             tools:ignore="MissingConstraints"
