@@ -23,7 +23,7 @@ brew install maven
 brew install mysql
 brew services start mysql
 mysql -u root
-SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root');
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 exit

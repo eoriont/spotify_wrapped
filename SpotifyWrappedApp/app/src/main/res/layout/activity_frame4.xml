@@ -8,6 +8,7 @@
     tools:context=".Frame4">
 
     <ImageView
+        tools:ignore="MissingConstraints"
         android:layout_width="638dp"
         android:layout_height="520dp"
         android:rotation="181"
@@ -16,6 +17,7 @@
         tools:layout_editor_absoluteY="258dp" />
 
     <ImageView
+        tools:ignore="MissingConstraints"
         android:layout_width="638dp"
         android:layout_height="520dp"
         android:src="@drawable/rectangle12"
@@ -24,6 +26,7 @@
 
 
     <ImageView
+        tools:ignore="MissingConstraints"
         android:layout_width="638dp"
         android:layout_height="520dp"
         android:src="@drawable/rectangle12"
@@ -31,6 +34,7 @@
         tools:layout_editor_absoluteY="-15dp" />
 
     <ImageView
+        tools:ignore="MissingConstraints"
         android:layout_width="655dp"
         android:layout_height="536dp"
         android:src="@drawable/rectangle12"
@@ -38,6 +42,7 @@
         tools:layout_editor_absoluteY="156dp" />
 
     <ImageView
+        tools:ignore="MissingConstraints"
         android:layout_width="638dp"
         android:layout_height="520dp"
         android:src="@drawable/rectangle12"
@@ -45,6 +50,7 @@
         tools:layout_editor_absoluteY="-123dp" />
 
     <ImageView
+        tools:ignore="MissingConstraints"
         android:layout_width="691dp"
         android:layout_height="526dp"
         android:src="@drawable/star1"
@@ -52,6 +58,7 @@
         tools:layout_editor_absoluteY="81dp" />
 
     <ImageView
+        tools:ignore="MissingConstraints"
         android:layout_width="691dp"
         android:layout_height="526dp"
         android:rotation="107"
@@ -79,7 +86,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    //"bold"
 
     <TextView
         android:id="@+id/textView2"

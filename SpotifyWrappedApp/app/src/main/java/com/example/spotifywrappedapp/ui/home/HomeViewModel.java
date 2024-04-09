@@ -32,12 +32,16 @@ public class HomeViewModel extends AndroidViewModel {
 //        OkHttpClient okHttpClient = new OkHttpClient();
 //        okHttpClient.newCall(request).enqueue(new Callback() {
 //            @Override
-//            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+//            public void onFailure(@NonNull Call call,
+//                                  @NonNull IOException e) {
 //                Log.d("backend", "failure! "+ e.getMessage());
 //            }
 //
 //            @Override
-//            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+//            public void onResponse(
+//                  @NonNull Call call,
+//                  @NonNull Response response
+//            ) throws IOException {
 //                try {
 //                    Log.d("JSON", response.body().string());
 //                    JSONObject res = new JSONObject(response.body().string());

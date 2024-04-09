@@ -15,6 +15,7 @@
         android:background="#141414">
 
         <ImageView
+            tools:ignore="MissingConstraints"
             android:id="@+id/spotifyIcon"
             android:layout_marginTop="200dp"
             android:layout_width="wrap_content"
@@ -57,6 +58,7 @@
         </RelativeLayout>
 
         <ImageView
+            tools:ignore="MissingConstraints"
             android:layout_marginTop="300dp"
             android:id="@+id/spotifyIcon2"
             android:layout_width="wrap_content"
