@@ -160,6 +160,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void configureTheNextButton() {
+        Button Audio =  (Button) findViewById(R.id.Audio);
+        Audio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MatchAudio.class));
+            }
+        });
+    }
+
     @Override
     protected void onDestroy() {
         cancelCall();
