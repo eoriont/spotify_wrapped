@@ -10,19 +10,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.ui.AppBarConfiguration;
 
-import com.example.spotifywrappedapp.MainActivity;
-import com.example.spotifywrappedapp.R;
 import com.example.spotifywrappedapp.databinding.FragmentNotificationsBinding;
-import com.spotify.sdk.android.auth.AuthorizationClient;
-import com.spotify.sdk.android.auth.AuthorizationRequest;
-import com.spotify.sdk.android.auth.AuthorizationResponse;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class NotificationsFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
 
-    private TextView tokenTextView, codeTextView, profileTextView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,56 +42,57 @@ public class NotificationsFragment extends Fragment {
 //        notificationsViewModel.getText()
 //                .observe(getViewLifecycleOwner(), textView::setText);
 
-        // Initialize the views
-        tokenTextView = binding.tokenTextView;
-        codeTextView = binding.codeTextView;
-        profileTextView = binding.responseTextView;
-
-        // Initialize the buttons
-        Button tokenBtn = binding.tokenBtn;
-        Button codeBtn = binding.codeBtn;
-        Button profileBtn = binding.profileBtn;
-
-        // Set the click listeners for the buttons
-
-        tokenBtn.setOnClickListener((v) -> {
-            getToken();
-        });
-
-        codeBtn.setOnClickListener((v) -> {
-            getCode();
-        });
-
-        profileBtn.setOnClickListener((v) -> {
-            getUserProfile();
+        Button audio = binding.Audio;
+        TextView newText = binding.newText;
+        audio.setOnClickListener(v -> {
+            newText.setText("Loading");
+            performNetworkRequest(tracks, newText);
         });
 
         return root;
-    }
-
-    public void getToken() {
-        final AuthorizationRequest request = getAuthenticationRequest(
-                AuthorizationResponse.Type.TOKEN);
-        AuthorizationClient
-                .openLoginActivity(MainActivity.this,
-                        AUTH_TOKEN_REQUEST_CODE,
-                        request);
-    }
-
-    public void getCode() {
-        final AuthorizationRequest request =
-                getAuthenticationRequest(
-                        AuthorizationResponse.Type.CODE);
-        AuthorizationClient
-                .openLoginActivity(
-                        MainActivity.this,
-                        AUTH_CODE_REQUEST_CODE,
-                        request);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private AppBarConfiguration appBarConfiguration;
+
+    private String[] tracks = {"Hello", "Hello"};
+    private String result = "";
+
+    private void performNetworkRequest(String[] trackNames, TextView newText) {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            try {
+                String baseUrl = "https://colbyb1123.pythonanywhere.com/";
+                List<String> dataList = new ArrayList<>();
+                for (String s : trackNames) {
+                    dataList.add(s);
+                }
+                String queryString = dataList.stream()
+                        .map(s -> "data=" + s)
+                        .collect(Collectors.joining("&"));
+                String urlStr = baseUrl + "?" + queryString;
+                URL url = new URL(urlStr);
+                HttpURLConnection con = (HttpURLConnection)
+                        url.openConnection();
+                con.setRequestMethod("GET");
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                result = response.toString();
+                getActivity().runOnUiThread(() -> newText.setText(result));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

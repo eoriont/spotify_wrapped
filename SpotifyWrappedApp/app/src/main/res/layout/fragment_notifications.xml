@@ -4,82 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".ui.notifications.NotificationsFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/windowmain"
+        android:layout_width="410dp"
+        android:layout_height="909dp"
+        android:layout_gravity="center"
+        android:background="#673AB7"
+        android:backgroundTint="#1C8C21"
+        android:gravity="center"
         android:orientation="vertical"
-        android:background="#141414">
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
-            tools:ignore="MissingConstraints"
-            android:id="@+id/spotifyIcon"
-            android:layout_marginTop="200dp"
+        <Button
+            android:id="@+id/Audio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:maxWidth="80dp"
-            android:maxHeight="80dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/spotify_icon"
-            android:layout_gravity="center" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:outlineAmbientShadowColor="@color/black"
+            android:backgroundTint="#020000"
+            android:text = "Find New Music!"/>
 
         <TextView
-            android:id="@+id/token_text_view"
+            android:id="@+id/newText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            tools:text="Token:" />
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/token_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Request Token" />
 
-        <TextView
-            android:id="@+id/code_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            tools:text="Code:" />
-
-        <Button
-            android:id="@+id/code_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Request Code" />
-
-        <TextView
-            android:id="@+id/response_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            tools:text="Line 1\nLine 2\nLine 3" />
-
-        <Button
-            android:id="@+id/profile_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#1CCC5D"
-            android:text="Sign In"
-            android:textSize="20dp" />
-
-        <ImageView
-            tools:ignore="MissingConstraints"
-            android:layout_marginTop="300dp"
-            android:id="@+id/spotifyIcon2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:maxWidth="80dp"
-            android:maxHeight="80dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/spotify_icon2" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
