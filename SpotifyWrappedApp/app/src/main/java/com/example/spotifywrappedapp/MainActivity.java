@@ -1,13 +1,12 @@
 package com.example.spotifywrappedapp;
 
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
