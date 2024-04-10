@@ -23,4 +23,10 @@
         android:name="com.example.spotifywrappedapp.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_friends"
+        android:name="com.example.spotifywrappedapp.ui.friends.FriendsFragment"
+        android:label="@string/title_friends"
+        tools:layout="@layout/fragment_friends" />
 </navigation>

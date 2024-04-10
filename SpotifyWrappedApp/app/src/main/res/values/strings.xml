@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_friends">Friends</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="second_fragment_title"># Minutes Listened</string>
     <string name="num_minutes">12,402</string>

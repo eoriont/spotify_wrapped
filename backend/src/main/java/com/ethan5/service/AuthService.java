@@ -19,7 +19,7 @@ public class AuthService {
     public String login(String bearerToken) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Content-Type", "application/json");
-        headers.add("Authorization", "Bearer " + bearerToken.substring(7));
+        headers.add("Authorization", bearerToken);
 
         LoginResponse res = template.exchange(
                 "https://api.spotify.com/v1/me",

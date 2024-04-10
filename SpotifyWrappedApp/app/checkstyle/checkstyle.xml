@@ -140,7 +140,10 @@
         <!-- <module name="DoubleCheckedLocking"/> -->   <!-- MY FAVOURITE -->
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField"/>
+        <module name="HiddenField" >
+            <property name="ignoreSetter" value="true" />
+            <property name="ignoreConstructorParameter" value="true" />
+        </module>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <module name="MagicNumber"/>
@@ -153,6 +156,9 @@
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
         <module name="VisibilityModifier"/>
+
+        <!-- Spring Boot Application files get detected as utility classes and checkstyle wants them to have a private constructor, but a constructor is required to run the application. By convention application classes end with *Application -->
+        <!-- <suppress checks="HideUtilityClassConstructor" files=".*App.java"/> -->
 
     </module>
 
