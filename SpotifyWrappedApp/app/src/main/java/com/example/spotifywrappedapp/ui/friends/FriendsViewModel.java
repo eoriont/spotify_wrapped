@@ -26,9 +26,9 @@ import okhttp3.Response;
 public class FriendsViewModel extends AndroidViewModel {
     private Application application;
 
-    public FriendsViewModel(@NonNull Application application) {
-        super(application);
-        this.application = application;
+    public FriendsViewModel(@NonNull Application app) {
+        super(app);
+        this.application = app;
 
         fetchFriends();
     }
@@ -40,9 +40,9 @@ public class FriendsViewModel extends AndroidViewModel {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username.setValue(username);
-        Log.d("Friends", username);
+    public void setUsername(String u) {
+        this.username.setValue(u);
+        Log.d("Friends", u);
     }
 
     public void addFriend(String friendId) {
@@ -56,7 +56,8 @@ public class FriendsViewModel extends AndroidViewModel {
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+            public void onFailure(@NonNull Call call,
+                                  @NonNull IOException e) {
                 Log.d("backend", "failure! " + e.getMessage());
             }
 
@@ -83,7 +84,8 @@ public class FriendsViewModel extends AndroidViewModel {
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+            public void onFailure(@NonNull Call call,
+                                  @NonNull IOException e) {
                 Log.d("backend", "failure! " + e.getMessage());
             }
 

@@ -4,17 +4,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-<<<<<<< HEAD
-=======
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
->>>>>>> 523cd92 (convert friends activity into fragment and mvvm)
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -24,14 +18,6 @@ import com.example.spotifywrappedapp.databinding.FragmentFriendsBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-=======
-import android.widget.Button;
-import android.widget.EditText;
-
-import com.example.spotifywrappedapp.R;
-import com.example.spotifywrappedapp.databinding.FragmentFriendsBinding;
-
->>>>>>> 523cd92 (convert friends activity into fragment and mvvm)
 public class FriendsFragment extends Fragment {
 
     private FriendsViewModel mViewModel;
