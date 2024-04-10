@@ -71,3 +71,4 @@
             android:src="@drawable/spotify_icon2" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

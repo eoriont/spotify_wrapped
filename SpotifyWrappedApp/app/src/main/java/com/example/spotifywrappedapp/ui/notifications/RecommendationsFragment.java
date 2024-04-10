@@ -4,30 +4,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.spotifywrappedapp.databinding.FragmentNotificationsBinding;
+import com.example.spotifywrappedapp.databinding.FragmentRecommendationsBinding;
 
-public class NotificationsFragment extends Fragment {
+public class RecommendationsFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentRecommendationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        RecommendationsViewModel viewModel =
+                new ViewModelProvider(this).get(RecommendationsViewModel.class);
 
-        binding = FragmentNotificationsBinding
+        binding = FragmentRecommendationsBinding
                 .inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText()
-                .observe(getViewLifecycleOwner(), textView::setText);
+        Button audio = binding.Audio;
+        TextView newText = binding.newText;
+
+        viewModel.getText().observe(getViewLifecycleOwner(), newText::setText);
+
+        audio.setOnClickListener(v -> viewModel.performNetworkRequest());
+
         return root;
     }
 
@@ -36,4 +41,5 @@ public class NotificationsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

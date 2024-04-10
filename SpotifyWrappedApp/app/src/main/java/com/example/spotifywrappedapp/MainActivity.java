@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
@@ -30,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int AUTH_CODE_REQUEST_CODE = 1;
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
-
-//    public static JSONObject userProfile;
 
     private String mAccessToken, mAccessCode;
     private Call mCall;
@@ -127,10 +124,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void setTextAsync(final String text, TextView textView) {
-        runOnUiThread(() -> textView.setText(text));
-    }
-
     private AuthorizationRequest getAuthenticationRequest(
             AuthorizationResponse.Type type) {
         return new AuthorizationRequest
@@ -151,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             mCall.cancel();
         }
     }
+
 
     @Override
     protected void onDestroy() {
