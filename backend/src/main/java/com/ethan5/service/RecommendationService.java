@@ -13,7 +13,7 @@ public class RecommendationService {
     private final TrackService trackService;
     private final RestTemplate template;
 
-    public String getRecommendations(String id, String bearerToken) throws Exception {
+    public String getRecommendations(String id, String bearerToken) {
         String apiUrl = "https://colbyb1123.pythonanywhere.com/";
         String queryStr = trackService
                 .readTopTracks(id, bearerToken)
@@ -22,6 +22,11 @@ public class RecommendationService {
                 .collect(Collectors.joining("&"));
         String url = String.format("%s?%s", apiUrl, queryStr);
 
-        return template.exchange(url, HttpMethod.GET, null, String.class).getBody();
+        return template.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                String.class
+        ).getBody();
     }
 }
