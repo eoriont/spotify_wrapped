@@ -7,29 +7,15 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.spotifywrappedapp.apiservices.BackendService;
-import com.example.spotifywrappedapp.utils.BackendServiceSingleton;
+import com.example.spotifywrappedapp.apiservices.BackendServiceSingleton;
 import com.example.spotifywrappedapp.utils.RetrofitUtils;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
-import java.io.IOException;
-
-//import okhttp3.Call;
-import okhttp3.Callback;
-//import okhttp3.OkHttpClient;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-//import okhttp3.Response;
 import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,10 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
-
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
-
-//    public static JSONObject userProfile;
 
     private String mAccessToken, mAccessCode;
     private Call mCall;
@@ -114,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .exceptionally(ex -> {
                     Log.e("LOGIN", Log.getStackTraceString(new Exception(ex)));
-//                    Toast.makeText(MainActivity.this, "Failed to fetch data, watch Logcat for more details",
-//                            Toast.LENGTH_SHORT).show();
                     return null;
                 });
     }

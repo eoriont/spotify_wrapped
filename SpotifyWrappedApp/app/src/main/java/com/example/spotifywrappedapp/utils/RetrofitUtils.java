@@ -6,7 +6,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RetrofitUtils {
+public final class RetrofitUtils {
+
+    private RetrofitUtils() {
+        throw new UnsupportedOperationException();
+    }
 
     public static <T> CompletableFuture<T> toCompletableFuture(Call<T> call) {
         CompletableFuture<T> future = new CompletableFuture<>();
@@ -16,7 +20,9 @@ public class RetrofitUtils {
                 if (response.isSuccessful()) {
                     future.complete(response.body());
                 } else {
-                    future.completeExceptionally(new RuntimeException("API error: " + response.message()));
+                    future.completeExceptionally(
+                            new RuntimeException(
+                                    "API error: " + response.message()));
                 }
             }
 

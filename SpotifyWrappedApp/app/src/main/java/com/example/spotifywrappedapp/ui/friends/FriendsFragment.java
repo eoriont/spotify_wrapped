@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -71,6 +72,8 @@ public class FriendsFragment extends Fragment {
             mViewModel.addFriend(username);
         });
 
+        listView.setOnItemLongClickListener(this::onItemDelete);
+
         return root;
     }
 
@@ -78,6 +81,12 @@ public class FriendsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null; // Clean up binding when the view is destroyed
+    }
+
+    public boolean onItemDelete(
+            AdapterView<?> adapterView, View item, int pos, long id) {
+        mViewModel.deleteFriend(pos);
+        return true;
     }
 
 }
