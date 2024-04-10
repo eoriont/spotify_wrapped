@@ -23,9 +23,9 @@ import retrofit2.Call;
 public class FriendsViewModel extends AndroidViewModel {
     private Application application;
 
-    public FriendsViewModel(@NonNull Application application) {
-        super(application);
-        this.application = application;
+    public FriendsViewModel(@NonNull Application app) {
+        super(app);
+        this.application = app;
 
         fetchFriends();
     }

@@ -27,7 +27,7 @@ public class DashboardActivity extends AppCompatActivity {
                 .Builder(
                     R.id.navigation_home,
                     R.id.navigation_dashboard,
-                    R.id.navigation_notifications)
+                    R.id.navigation_recommendations)
                 .build();
         NavController navController = Navigation
                 .findNavController(this,
