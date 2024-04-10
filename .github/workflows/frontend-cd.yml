@@ -35,8 +35,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Deploy
-        working-directory: ./frontend
-        env:
+        working-directory: ./SpotifyWrappedApp
+        # env:
           # SSH_HOST: ${{ secrets.SSH_HOST }}
           # SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
