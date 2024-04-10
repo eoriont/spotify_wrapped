@@ -21,11 +21,21 @@ public class FriendService {
                 .user2Id(req.user2Id())
                 .build();
         repository.save(friendship);
+
+        Friend friendship2 = Friend
+                .builder()
+                .user1Id(req.user2Id())
+                .user2Id(req.user1Id())
+                .build();
+        repository.save(friendship2);
     }
 
     public void deleteFriend(String id1, String id2) {
         Optional<Friend> f = repository.findByUser1IdAndUser2Id(id1, id2);
         f.ifPresent(repository::delete);
+
+        Optional<Friend> f2 = repository.findByUser1IdAndUser2Id(id2, id1);
+        f2.ifPresent(repository::delete);
     }
 
     public List<Friend> getFriendsList(String id) {
