@@ -16,9 +16,10 @@ public class RecommendationController {
 
     // in the future, make this return a list of tracks instead of a string??
     @GetMapping("{id}")
-    public String getRecommendations(@PathVariable("id") String id,
-            @RequestHeader("Authorization") String bearerToken)
-            throws Exception {
+    public String getRecommendations(
+            @PathVariable("id") String id,
+            @RequestHeader("Authorization") String bearerToken
+    ) throws Exception {
         return service.getRecommendations(id, bearerToken);
     }
 }

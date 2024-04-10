@@ -4,7 +4,6 @@ import com.ethan5.dao.TrackRepository;
 import com.ethan5.dto.TracksWrapper;
 import com.ethan5.entity.Track;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
 @Service
 @AllArgsConstructor
 public class TrackService {
@@ -37,13 +35,12 @@ public class TrackService {
                         TracksWrapper.class)
                 .getBody();
 
-        log.info("Res: {}", res.toString());
-
         List<Track> tracks = new ArrayList<>();
 
         res.tracks().forEach(t -> {
             Track track = Track
                     .builder()
+                    .userId(id)
                     .name(t.name())
                     .id(t.id())
 //                    .imageUrl(t.images().get(0).url())
