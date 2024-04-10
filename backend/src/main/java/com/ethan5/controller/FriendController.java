@@ -20,9 +20,9 @@ public class FriendController {
     private final FriendService service;
 
     @PostMapping("{id}/{id2}")
-    public void addFriend(@PathVariable("id") String id1,
+    public Friend addFriend(@PathVariable("id") String id1,
                           @PathVariable("id2") String id2) {
-        service.addFriend(new FriendRequest(id1, id2));
+        return service.addFriend(new FriendRequest(id1, id2));
     }
 
     @DeleteMapping("{id}/{id2}")

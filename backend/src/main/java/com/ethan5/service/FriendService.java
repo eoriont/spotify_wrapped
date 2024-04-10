@@ -14,7 +14,7 @@ import java.util.Optional;
 public class FriendService {
     private final FriendRepository repository;
 
-    public void addFriend(FriendRequest req) {
+    public Friend addFriend(FriendRequest req) {
         Friend friendship = Friend
                 .builder()
                 .user1Id(req.user1Id())
@@ -28,6 +28,8 @@ public class FriendService {
                 .user2Id(req.user1Id())
                 .build();
         repository.save(friendship2);
+
+        return friendship;
     }
 
     public void deleteFriend(String id1, String id2) {

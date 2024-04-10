@@ -1,34 +1,28 @@
 package com.example.spotifywrappedapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.spotifywrappedapp.apiservices.BackendService;
+import com.example.spotifywrappedapp.apiservices.BackendServiceSingleton;
+import com.example.spotifywrappedapp.utils.RetrofitUtils;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import retrofit2.Call;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String CLIENT_ID = "57630b7e960946ab83c1e0dbda46a4ca";
     public static final String REDIRECT_URI = "spotifywrappedapp://auth";
-
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
-
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
 
     private String mAccessToken, mAccessCode;
     private Call mCall;
@@ -76,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
 
-            // TODO: For now :(
+            // TODO: Agree on the best way to cache user data
             UserData userData = new UserData(getApplication());
             userData.setToken(mAccessToken);
-            Log.d("Access Token", mAccessToken);
+            Log.d("ACCESS TOKEN", mAccessToken);
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
         }
@@ -88,34 +82,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getUserProfile() {
-        // TODO: make a cache
-        final Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/v1/auth/login")
-                .post(RequestBody.create(null, ""))
-                .addHeader("Authorization", "Bearer " + mAccessToken)
-                .build();
 
-        cancelCall();
-        mCall = mOkHttpClient.newCall(request);
+        BackendService service = BackendServiceSingleton.getBackendService();
+        Call<String> call = service.login("Bearer " + mAccessToken);
 
-        mCall.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("HTTP", "Failed to fetch data: " + e);
-            }
-
-            @Override
-            public void onResponse(
-                    Call call,
-                    Response response
-            ) throws IOException {
-                if (response.isSuccessful()) {
+        RetrofitUtils.toCompletableFuture(call)
+                .thenAccept(userId -> {
+                    Log.d("LOGIN", "Successfully logged in " + userId);
                     UserData userData = new UserData(getApplication());
-                    userData.setId(response.body().string());
+                    userData.setId(userId);
                     onLoginSucceed();
-                }
-            }
-        });
+                })
+                .exceptionally(ex -> {
+                    Log.e("LOGIN", Log.getStackTraceString(new Exception(ex)));
+                    return null;
+                });
     }
 
     private void onLoginSucceed() {
