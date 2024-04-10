@@ -38,8 +38,9 @@ public class RecommendationService {
         repository.save(friendship2);
     }
 
-    // TODO: make this return a list of tracks instead of a string??
-    public String getRecommendations(String id, String bearerToken) throws Exception {
+    // in the future, make this return a list of tracks instead of a string??
+    public String getRecommendations(String id, String bearerToken)
+            throws Exception {
         List<Track> topTracks = trackService.readTopTracks(id, bearerToken);
 
         List<String> dataList = new ArrayList<>();

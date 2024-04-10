@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecommendationController {
     private final RecommendationService service;
 
-    // TODO: make this return a list of tracks instead of a string??
+    // in the future, make this return a list of tracks instead of a string??
     @GetMapping("{id}")
     public String getRecommendations(@PathVariable("id") String id,
-                                          @RequestHeader("Authorization") String bearerToken) throws Exception {
-        System.out.println(""+id+" "+ bearerToken);
+            @RequestHeader("Authorization") String bearerToken)
+            throws Exception {
         return service.getRecommendations(id, bearerToken);
     }
 }
