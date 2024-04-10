@@ -33,17 +33,7 @@ public class FriendsViewModel extends AndroidViewModel {
         fetchFriends();
     }
 
-    private MutableLiveData<String> username = new MutableLiveData<>();
     private MutableLiveData<List<String>> friends = new MutableLiveData<>();
-
-    public LiveData<String> getUsername() {
-        return username;
-    }
-
-    public void setUsername(String u) {
-        this.username.setValue(u);
-        Log.d("Friends", u);
-    }
 
     public void addFriend(String friendId) {
         UserData userData = new UserData(application);

@@ -19,10 +19,10 @@
 
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.spotifywrappedapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notificationssss" />
+        android:id="@+id/navigation_recommendations"
+        android:name="com.example.spotifywrappedapp.ui.notifications.RecommendationsFragment"
+        android:label="@string/title_recommendations"
+        tools:layout="@layout/fragment_recommendations" />
 
     <fragment
         android:id="@+id/navigation_friends"
