@@ -20,7 +20,8 @@ public class HistoryService {
             Optional<List<Track>> tracks,
             Optional<List<Artist>> artists
     ) {
-        History latestHistory = repository.findTopByUserIdOrderByDateDesc(userId);
+        History latestHistory = repository
+                .findTopByUserIdOrderByDateDesc(userId);
         History history = History
                 .builder()
                 .userId(userId)

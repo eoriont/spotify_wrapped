@@ -8,11 +8,15 @@ public class UserData {
     private SharedPreferences sharedPreferences;
 
     public UserData(Application application) {
-        sharedPreferences = application.getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        sharedPreferences = application
+                .getSharedPreferences("UserData",
+                        Context.MODE_PRIVATE);
     }
 
     public String getDisplayName() {
-        return sharedPreferences.getString("display_name", "USERNAME_NOT_SET!!");
+        return sharedPreferences
+                .getString("display_name",
+                        "USERNAME_NOT_SET!!");
     }
 
     public void setToken(String token) {

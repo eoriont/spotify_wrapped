@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ErrorHandler {
     @ExceptionHandler(JsonProcessingException.class)
-    public ResponseEntity<String> handleJsonProcessingException(JsonProcessingException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<String> handleJsonProcessingException(
+            JsonProcessingException e
+    ) {
+        return new ResponseEntity<>(e.getMessage(),
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -1,10 +1,8 @@
 package com.ethan5.service;
 
 import com.ethan5.dao.TrackRepository;
-import com.ethan5.dto.ArtistTrackDto;
 import com.ethan5.dto.TracksWrapper;
 import com.ethan5.entity.Track;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
@@ -25,14 +23,18 @@ public class TrackService {
     private final HistoryService historyService;
     private RestTemplate template;
 
-    public List<Track> readTopTracks(String id, String bearerToken) throws JsonProcessingException {
+    public List<Track> readTopTracks(String id, String bearerToken) {
         String url = "https://api.spotify.com/v1/me/top/tracks?limit=3";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(bearerToken.substring(7));
 
         TracksWrapper res = template
-                .exchange(url, HttpMethod.GET, new HttpEntity<>(headers), TracksWrapper.class)
+                .exchange(
+                        url,
+                        HttpMethod.GET,
+                        new HttpEntity<>(headers),
+                        TracksWrapper.class)
                 .getBody();
 
         log.info("Res: {}", res.toString());
