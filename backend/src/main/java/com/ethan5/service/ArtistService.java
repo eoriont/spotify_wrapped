@@ -25,7 +25,7 @@ public class ArtistService {
 
     public List<Artist> readTopArtists(String id, String bearerToken) {
         String url = "https://api.spotify.com/v1/me/top/artists?limit=3";
-        String token = bearerToken.substring(7);
+        String token = bearerToken.substring("Bearer ".length());
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Content-Type", "application/json");
         headers.add("Authorization", "Bearer " + token);

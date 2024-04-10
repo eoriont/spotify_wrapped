@@ -4,19 +4,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.spotifywrappedapp.R;
 import com.example.spotifywrappedapp.databinding.FragmentFriendsBinding;
 
 import java.util.ArrayList;
@@ -34,7 +30,9 @@ public class FriendsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
         // Initialize ViewModel
         mViewModel = new ViewModelProvider(this).get(FriendsViewModel.class);
         // Inflate the layout for this fragment using View Binding
@@ -44,7 +42,9 @@ public class FriendsFragment extends Fragment {
         ListView listView = binding.lvItems;
 
         // Initialize the adapter with the current array (empty at this point)
-        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, friends);
+        adapter = new ArrayAdapter<>(getActivity(),
+                                    android.R.layout.simple_list_item_1,
+                                    friends);
 
         // Set the adapter to the ListView
         listView.setAdapter(adapter);

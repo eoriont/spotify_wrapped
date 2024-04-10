@@ -27,7 +27,7 @@ public class TrackService {
         String url = "https://api.spotify.com/v1/me/top/tracks?limit=3";
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(bearerToken.substring(7));
+        headers.setBearerAuth(bearerToken.substring("Bearer ".length()));
 
         TracksWrapper res = template
                 .exchange(
