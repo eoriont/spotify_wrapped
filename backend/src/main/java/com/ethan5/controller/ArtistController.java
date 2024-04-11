@@ -23,6 +23,6 @@ public class ArtistController {
             @PathVariable("id") String id,
             @RequestHeader("Authorization") String bearerToken
     ) {
-        return service.readTopArtists(id, bearerToken);
+        return service.readTopArtists(id, bearerToken, 3, 0);
     }
 }

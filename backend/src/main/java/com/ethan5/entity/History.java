@@ -38,4 +38,6 @@ public class History {
     private String artist1Id;
     private String artist2Id;
     private String artist3Id;
+
+    private String idx;
 }

@@ -1,4 +1,4 @@
-package com.example.spotifywrappedapp.ui.notifications;
+package com.example.spotifywrappedapp.ui.recommendations;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

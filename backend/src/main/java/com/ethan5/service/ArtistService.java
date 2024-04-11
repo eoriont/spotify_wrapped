@@ -14,21 +14,23 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ArtistService {
     private final ArtistRepository repository;
-    private final HistoryService historyService;
+//    private final HistoryService historyService;
     private RestTemplate template;
 
-    public List<Artist> readTopArtists(String id, String bearerToken) {
-        String url = "https://api.spotify.com/v1/me/top/artists?limit=3";
-        String token = bearerToken.substring("Bearer ".length());
+    public List<Artist> readTopArtists(String id, String bearerToken,
+                                       int limit, int offset) {
+        String url = String.format(
+                "https://api.spotify.com/v1/me/top/artists?limit=%d&offset=%d",
+                limit, offset);
+        String token = bearerToken.substring("bearer ".length());
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", "Bearer " + token);
+        headers.add("content-type", "application/json");
+        headers.add("authorization", "Bearer " + token);
 
         List<ArtistTrackDto> topArtists = template
                 .exchange(
@@ -54,11 +56,11 @@ public class ArtistService {
             artists.add(artist);
         });
 
-        historyService.createHistory(
-                id,
-                Optional.empty(),
-                Optional.of(artists)
-        );
+//        historyService.createHistory(
+//                id,
+//                Optional.empty(),
+//                Optional.of(artists)
+//        );
         return artists;
     }
 }

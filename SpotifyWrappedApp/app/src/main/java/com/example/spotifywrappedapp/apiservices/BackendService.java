@@ -1,6 +1,7 @@
 package com.example.spotifywrappedapp.apiservices;
 
 import com.example.spotifywrappedapp.models.Friendship;
+import com.example.spotifywrappedapp.models.History;
 
 import java.util.List;
 
@@ -25,5 +26,9 @@ public interface BackendService {
     @DELETE("v1/friend/{id1}/{id2}")
     Call<Void> deleteFriend(@Path("id1") String id1,
                                   @Path("id2") String id2);
+
+    @GET("v1/history/{id}")
+    Call<List<History>> getSummaries(@Path("id") String id,
+                                @Header("Authorization") String authorization);
 
 }
