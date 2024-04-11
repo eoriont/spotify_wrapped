@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_recommendations"
-        android:name="com.example.spotifywrappedapp.ui.notifications.RecommendationsFragment"
+        android:name="com.example.spotifywrappedapp.ui.recommendations.RecommendationsFragment"
         android:label="@string/title_recommendations"
         tools:layout="@layout/fragment_recommendations" />
 

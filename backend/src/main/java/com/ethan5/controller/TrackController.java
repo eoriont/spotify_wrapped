@@ -23,6 +23,6 @@ public class TrackController {
             @PathVariable("id") String id,
             @RequestHeader("Authorization") String bearerToken
     ) throws JsonProcessingException {
-        return service.readTopTracks(id, bearerToken);
+        return service.readTopTracks(id, bearerToken, 3, 0);
     }
 }

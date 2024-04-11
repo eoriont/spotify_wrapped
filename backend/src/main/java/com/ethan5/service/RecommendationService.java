@@ -16,7 +16,7 @@ public class RecommendationService {
     public String getRecommendations(String id, String bearerToken) {
         String apiUrl = "https://colbyb1123.pythonanywhere.com/";
         String queryStr = trackService
-                .readTopTracks(id, bearerToken)
+                .readTopTracks(id, bearerToken, 3, 0)
                 .stream()
                 .map(t -> String.format("data=%s", t.getName()))
                 .collect(Collectors.joining("&"));

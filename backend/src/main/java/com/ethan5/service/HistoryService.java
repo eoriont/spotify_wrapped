@@ -7,6 +7,7 @@ import com.ethan5.entity.Track;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +15,12 @@ import java.util.Optional;
 @AllArgsConstructor
 public class HistoryService {
     private final HistoryRepository repository;
+    private TrackService trackService;
+    private ArtistService artistService;
 
-    public void createHistory(
+    public History createHistory(
             String userId,
+            String index,
             Optional<List<Track>> tracks,
             Optional<List<Artist>> artists
     ) {
@@ -25,6 +29,7 @@ public class HistoryService {
         History history = History
                 .builder()
                 .userId(userId)
+                .idx(index)
                 .build();
 
         if (tracks.isPresent()) {
@@ -50,9 +55,29 @@ public class HistoryService {
         }
 
         repository.save(history);
+        return history;
     }
 
-    public List<History> readHistory(String userId) {
+    public List<History> readHistory(String userId, String bearerToken) {
+        // Ensure we have enough histories
+        List<History> histories = repository.findByUserId(userId);
+        if (histories.size() < 10) {
+            generateHistory(userId, bearerToken);
+        }
         return repository.findByUserId(userId);
+    }
+
+    public List<History> generateHistory(String userId, String bearerToken) {
+        // generate 10 histories
+        System.out.println(bearerToken);
+        List<History> histories = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            List<Track> tracks = trackService.readTopTracks(userId, "Bearer " + bearerToken, 3, 3*i);
+            List<Artist> artists = artistService.readTopArtists(userId, "Bearer " + bearerToken, 3, 3*i);
+            History h = this.createHistory(userId, String.valueOf(i), Optional.of(tracks), Optional.of(artists));
+            histories.add(h);
+        }
+
+        return histories;
     }
 }
