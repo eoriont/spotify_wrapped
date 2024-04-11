@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".LLM_UI"
+            android:name=".LLMUI"
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"

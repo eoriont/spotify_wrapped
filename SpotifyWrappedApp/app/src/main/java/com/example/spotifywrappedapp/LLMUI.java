@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class LLM_UI extends AppCompatActivity {
+public class LLMUI extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
