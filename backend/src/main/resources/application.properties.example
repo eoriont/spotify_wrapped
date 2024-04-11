@@ -7,3 +7,5 @@ spring.jpa.hibernate.ddl-auto=update
 spotify.client.id=
 spotify.client.secret=
 spotify.redirect.uri=
+
+openai.api-key=
