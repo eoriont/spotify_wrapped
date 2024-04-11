@@ -17,7 +17,8 @@ import java.util.List;
 public class LLMService {
     private final String apiKey;
     private final RestTemplate template;
-    private static final String URL = "https://api.openai.com/v1/chat/completions";
+    private static final String URL =
+            "https://api.openai.com/v1/chat/completions";
 
     public LLMService(
             @Value("${openai.api-key}") String apiKey,
@@ -35,8 +36,8 @@ public class LLMService {
         List<String> genres = req.genres();
         String prompt = String.format(
                 "Assume I am really interested into %s, %s, and %s."
-                        + "Describe how someone like me tends to act/think/dress."
-                        + "Limit to 40 words.",
+                        + "Describe how someone like me tends to"
+                        + "act/think/dress. Limit to 40 words.",
                 genres.get(0),
                 genres.get(1),
                 genres.get(2)
