@@ -29,4 +29,10 @@
         android:name="com.example.spotifywrappedapp.ui.friends.FriendsFragment"
         android:label="@string/title_friends"
         tools:layout="@layout/fragment_friends" />
+
+    <fragment
+        android:id="@+id/navigation_llm"
+        android:name="com.example.spotifywrappedapp.ui.llm.LLMFragment"
+        android:label="@string/title_llm"
+        tools:layout="@layout/activity_llm_ui" />
 </navigation>
