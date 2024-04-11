@@ -72,9 +72,14 @@ public class HistoryService {
         System.out.println(bearerToken);
         List<History> histories = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            List<Track> tracks = trackService.readTopTracks(userId, "Bearer " + bearerToken, 3, 3*i);
-            List<Artist> artists = artistService.readTopArtists(userId, "Bearer " + bearerToken, 3, 3*i);
-            History h = this.createHistory(userId, String.valueOf(i), Optional.of(tracks), Optional.of(artists));
+            List<Track> tracks = trackService.readTopTracks(
+                    userId, "Bearer " + bearerToken,
+                    3, 3 * i);
+            List<Artist> artists = artistService.readTopArtists(
+                    userId, "Bearer " + bearerToken,
+                    3, 3 * i);
+            History h = this.createHistory(userId, String.valueOf(i),
+                    Optional.of(tracks), Optional.of(artists));
             histories.add(h);
         }
 

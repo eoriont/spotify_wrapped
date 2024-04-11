@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,8 +22,11 @@ public class ArtistService {
 //    private final HistoryService historyService;
     private RestTemplate template;
 
-    public List<Artist> readTopArtists(String id, String bearerToken, int limit, int offset) {
-        String url = String.format("https://api.spotify.com/v1/me/top/artists?limit=%d&offset=%d", limit, offset);
+    public List<Artist> readTopArtists(String id, String bearerToken,
+                                       int limit, int offset) {
+        String url = String.format(
+                "https://api.spotify.com/v1/me/top/artists?limit=%d&offset=%d",
+                limit, offset);
         String token = bearerToken.substring("bearer ".length());
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("content-type", "application/json");

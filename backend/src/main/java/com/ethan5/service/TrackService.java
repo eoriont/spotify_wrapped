@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -23,8 +22,12 @@ public class TrackService {
 //    private final HistoryService historyService;
     private RestTemplate template;
 
-    public List<Track> readTopTracks(String id, String bearerToken, int limit, int offset) {
-        String url = String.format("https://api.spotify.com/v1/me/top/tracks?limit=%d&offset=%d", limit, offset);
+    public List<Track> readTopTracks(String id,
+                                     String bearerToken,
+                                     int limit, int offset) {
+        String url = String.format(
+                "https://api.spotify.com/v1/me/top/tracks?limit=%d&offset=%d",
+                limit, offset);
 
         log.info("Bearer Token: {}", bearerToken);
         log.info("Bearer Token: {}", bearerToken.substring("Bearer ".length()));
@@ -58,7 +61,8 @@ public class TrackService {
             tracks.add(track);
         });
 
-//        historyService.createHistory(id, Optional.of(tracks), Optional.empty());
+//        historyService
+//        .createHistory(id, Optional.of(tracks), Optional.empty());
         return tracks;
     }
 }
