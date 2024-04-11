@@ -1,15 +1,16 @@
 package com.example.spotifywrappedapp.ui.home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.spotifywrappedapp.databinding.FragmentHomeBinding;
 import com.example.spotifywrappedapp.models.History;
@@ -30,7 +31,7 @@ public class HomeFragment extends Fragment {
 //        binding = FragmentHomeBinding.inflate(inflater, container, false);
 //        View root = binding.getRoot();
 
-//        final TextView textView = binding.textHome;
+    //        final TextView textView = binding.textHome;
 //        homeViewModel.getText()
 //                .observe(getViewLifecycleOwner(), textView::setText);
 //        return root;
@@ -69,7 +70,7 @@ public class HomeFragment extends Fragment {
 //            mViewModel.addFriend(username);
 //        });
 //
-        listView.setOnItemLongClickListener(this::onItemDelete);
+        listView.setOnItemClickListener(this::onItemDelete);
 
         return root;
     }
@@ -83,9 +84,12 @@ public class HomeFragment extends Fragment {
 
     public boolean onItemDelete(
             AdapterView<?> adapterView, View item, int pos, long id) {
-//        mViewModel.deleteFriend(pos);
         History h = summaries.get(pos);
-        Log.d("SUMMARIES", "Now viewing: " + h.toString());
+
+        NavHostFragment.findNavController(HomeFragment.this)
+                .navigate(HomeFragmentDirections
+                        .actionHomeFragmentToTrackFragment()
+                        .setHistory(h));
         return true;
     }
 }

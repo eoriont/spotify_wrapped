@@ -18,6 +18,11 @@ import java.util.List;
 public class TrackController {
     private TrackService service;
 
+    @GetMapping("{trackId}")
+    public Track readTrack(@PathVariable("trackId") String trackId) {
+        return service.readTrack(trackId);
+    }
+
     @GetMapping("{id}/top-tracks")
     public List<Track> readTopTracks(
             @PathVariable("id") String id,

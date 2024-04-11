@@ -9,14 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="com.example.spotifywrappedapp.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_trackFragment"
+            app:destination="@id/trackFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.spotifywrappedapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
-
 
     <fragment
         android:id="@+id/navigation_recommendations"
@@ -35,4 +38,35 @@
         android:name="com.example.spotifywrappedapp.ui.llm.LLMFragment"
         android:label="@string/title_llm"
         tools:layout="@layout/activity_llm_ui" />
+
+    <fragment
+        android:id="@+id/trackFragment"
+        android:name="com.example.spotifywrappedapp.ui.home.TrackFragment"
+        android:label="TrackFragment">
+        <argument
+            android:name="history"
+            app:nullable="true"
+            android:defaultValue="@null"
+            app:argType="com.example.spotifywrappedapp.models.History" />
+
+        <action
+            android:id="@+id/action_trackFragment_to_artistFragment"
+            app:destination="@id/artistFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/artistFragment"
+        android:name="com.example.spotifywrappedapp.ui.home.ArtistFragment"
+        android:label="ArtistFragment">
+        <argument
+            android:name="history"
+            app:nullable="true"
+            android:defaultValue="@null"
+            app:argType="com.example.spotifywrappedapp.models.History" />
+
+        <action
+            android:id="@+id/action_artistFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
 </navigation>
