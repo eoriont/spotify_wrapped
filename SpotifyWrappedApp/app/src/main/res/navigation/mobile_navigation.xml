@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/trackFragment"
         android:name="com.example.spotifywrappedapp.ui.home.TrackFragment"
-        android:label="TrackFragment">
+        android:label="Top Tracks!">
         <argument
             android:name="history"
             app:nullable="true"
@@ -57,7 +57,7 @@
     <fragment
         android:id="@+id/artistFragment"
         android:name="com.example.spotifywrappedapp.ui.home.ArtistFragment"
-        android:label="ArtistFragment">
+        android:label="Top Artists!">
         <argument
             android:name="history"
             app:nullable="true"
