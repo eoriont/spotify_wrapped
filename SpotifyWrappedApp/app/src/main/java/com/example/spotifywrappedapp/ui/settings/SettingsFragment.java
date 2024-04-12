@@ -21,10 +21,15 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(this)
-                        .get(SettingsViewModel.class);
+                .get(SettingsViewModel.class);
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        viewModel
+                .getText()
+                .observe(getViewLifecycleOwner(), binding.header::setText);
+        viewModel.readUser();
 
         return root;
     }
@@ -35,6 +40,24 @@ public class SettingsFragment extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.buttonUpdateAccount
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        viewModel
+                                .getText()
+                                .observe(
+                                        getViewLifecycleOwner(),
+                                        binding.header::setText
+                                );
+
+                        viewModel.updateUser(
+                                binding.firstName.getText().toString(),
+                                binding.lastName.getText().toString()
+                        );
+                    }
+                });
 
         binding.buttonDeleteAccount
                 .setOnClickListener(new View.OnClickListener() {

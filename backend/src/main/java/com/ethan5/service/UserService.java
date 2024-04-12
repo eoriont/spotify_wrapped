@@ -5,6 +5,7 @@ import com.ethan5.dao.FriendRepository;
 import com.ethan5.dao.HistoryRepository;
 import com.ethan5.dao.TrackRepository;
 import com.ethan5.dao.UserRepository;
+import com.ethan5.dto.UpdateUserRequest;
 import com.ethan5.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,21 @@ public class UserService {
 
     public User readUser(String id) {
         return repository.findById(id).orElse(null);
+    }
+
+    public User updateUser(String id, UpdateUserRequest req) {
+        User user = repository.findById(id).get();
+
+        if (req.firstName() != null) {
+            user.setFirstName(req.firstName());
+        }
+
+        if (req.lastName() != null) {
+            user.setLastName(req.lastName());
+        }
+
+        repository.save(user);
+        return user;
     }
 
     public void deleteUser(String id) {

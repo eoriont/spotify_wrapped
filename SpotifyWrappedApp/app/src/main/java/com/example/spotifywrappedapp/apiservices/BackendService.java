@@ -4,14 +4,18 @@ import com.example.spotifywrappedapp.models.Artist;
 import com.example.spotifywrappedapp.models.Friendship;
 import com.example.spotifywrappedapp.models.History;
 import com.example.spotifywrappedapp.models.Track;
+import com.example.spotifywrappedapp.models.UpdateUserRequest;
+import com.example.spotifywrappedapp.models.User;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface BackendService {
@@ -41,6 +45,13 @@ public interface BackendService {
 
     @GET("v1/llm/{id}")
     Call<String> getLLMResponse(@Path("id") String userid);
+
+    @GET("v1/user/{id}")
+    Call<User> readUser(@Path("id") String id);
+
+    @PUT("v1/user/{id}")
+    Call<User> updateUser(@Path("id") String id,
+                          @Body UpdateUserRequest req);
 
     @DELETE("v1/user/{id}")
     Call<Void> deleteUser(@Path("id") String id);
