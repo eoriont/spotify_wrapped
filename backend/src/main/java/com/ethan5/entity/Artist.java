@@ -24,5 +24,8 @@ public class Artist {
     private String name;
 
     @Column(nullable = false)
+    private String imageUrl;
+
+    @Column(nullable = false)
     private String userId;
 }
