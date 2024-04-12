@@ -14,12 +14,13 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ArtistService {
     private final ArtistRepository repository;
-//    private final HistoryService historyService;
+
     private RestTemplate template;
 
     public Artist readArtist(String artistId) {
@@ -54,17 +55,13 @@ public class ArtistService {
                     .id(a.id())
                     .name(a.name())
                     .userId(id)
+                    .imageUrl(a.images().get(0).url())
                     .build();
 
             repository.save(artist);
             artists.add(artist);
         });
 
-//        historyService.createHistory(
-//                id,
-//                Optional.empty(),
-//                Optional.of(artists)
-//        );
         return artists;
     }
 }

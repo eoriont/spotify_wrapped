@@ -19,7 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TrackService {
     private final TrackRepository repository;
-//    private final HistoryService historyService;
     private RestTemplate template;
 
     public Track readTrack(String trackId) {
@@ -32,9 +31,6 @@ public class TrackService {
         String url = String.format(
                 "https://api.spotify.com/v1/me/top/tracks?limit=%d&offset=%d",
                 limit, offset);
-
-        log.info("Bearer Token: {}", bearerToken);
-        log.info("Bearer Token: {}", bearerToken.substring("Bearer ".length()));
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(bearerToken.substring("Bearer ".length()));
@@ -50,12 +46,13 @@ public class TrackService {
         List<Track> tracks = new ArrayList<>();
 
         res.tracks().forEach(t -> {
+            // Use t.album().images() since spotify track api doesn't return images directly
             Track track = Track
                     .builder()
                     .userId(id)
                     .name(t.name())
                     .id(t.id())
-//                    .imageUrl(t.images().get(0).url())
+                    .imageUrl(t.album().images().get(0).url())
                     .build();
 
             if (repository.findById(t.id()).isEmpty()) {
@@ -65,8 +62,6 @@ public class TrackService {
             tracks.add(track);
         });
 
-//        historyService
-//        .createHistory(id, Optional.of(tracks), Optional.empty());
         return tracks;
     }
 }

@@ -3,6 +3,7 @@ package com.example.spotifywrappedapp.models;
 public class Track {
     private String id;
     private String name;
+    private String imageUrl;
 
     public Track(String id, String name) {
         this.id = id;
@@ -26,5 +27,13 @@ public class Track {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
