@@ -17,7 +17,7 @@
         android:src="@drawable/star"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="111dp" />
 
     <ImageView
         android:layout_width="57dp"
@@ -25,14 +25,15 @@
         android:rotation="181"
         android:src="@drawable/star"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="354dp"
-        tools:layout_editor_absoluteY="678dp" />
+        tools:layout_editor_absoluteX="333dp"
+        tools:layout_editor_absoluteY="769dp" />
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="148dp"
         android:gravity="center"
         android:text="Your Listening Personality"
         android:textAlignment="center"
@@ -53,8 +54,8 @@
         android:rotation="181"
         android:src="@drawable/green_rectangle"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-33dp"
-        tools:layout_editor_absoluteY="129dp" />
+        tools:layout_editor_absoluteX="-40dp"
+        tools:layout_editor_absoluteY="206dp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -63,18 +64,18 @@
         android:rotation="185"
         android:src="@drawable/orange_rectangle"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-20dp"
-        tools:layout_editor_absoluteY="129dp" />
+        tools:layout_editor_absoluteX="-40dp"
+        tools:layout_editor_absoluteY="223dp" />
 
     <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="374dp"
         android:layout_height="471dp"
         android:rotation="181"
         android:src="@drawable/pink_rectangle"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="152dp" />
-
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="234dp" />
 
     <ImageView
         android:layout_width="57dp"
@@ -82,8 +83,8 @@
         android:rotation="181"
         android:src="@drawable/star"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="354dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteX="336dp"
+        tools:layout_editor_absoluteY="102dp" />
 
     <ImageView
         android:layout_width="57dp"
@@ -92,7 +93,7 @@
         android:src="@drawable/star"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="678dp" />
+        tools:layout_editor_absoluteY="769dp" />
 
     <TextView
         android:id="@+id/res"
