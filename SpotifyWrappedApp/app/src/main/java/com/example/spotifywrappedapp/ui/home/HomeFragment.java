@@ -25,17 +25,6 @@ public class HomeFragment extends Fragment {
     private List<History> summaries = new ArrayList<>();
     private ArrayAdapter<History> adapter;
 
-//    public View onCreateView(@NonNull LayoutInflater inflater,
-//                             ViewGroup container, Bundle savedInstanceState) {
-//
-//        binding = FragmentHomeBinding.inflate(inflater, container, false);
-//        View root = binding.getRoot();
-
-    //        final TextView textView = binding.textHome;
-//        homeViewModel.getText()
-//                .observe(getViewLifecycleOwner(), textView::setText);
-//        return root;
-//    }
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -61,16 +50,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-//        // Setup UI components
-//        EditText enterFriend = binding.enterFriend;
-//
-//        // Set click listener to update username in ViewModel
-//        binding.btnNew.setOnClickListener(v -> {
-//            String username = enterFriend.getText().toString();
-//            mViewModel.addFriend(username);
-//        });
-//
-        listView.setOnItemClickListener(this::onItemDelete);
+        listView.setOnItemClickListener(this::onItemClick);
 
         return root;
     }
@@ -82,7 +62,7 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    public boolean onItemDelete(
+    public boolean onItemClick(
             AdapterView<?> adapterView, View item, int pos, long id) {
         History h = summaries.get(pos);
 
@@ -91,5 +71,12 @@ public class HomeFragment extends Fragment {
                         .actionHomeFragmentToTrackFragment()
                         .setHistory(h));
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mViewModel.fetchSummaries();
+        adapter.notifyDataSetChanged();
     }
 }

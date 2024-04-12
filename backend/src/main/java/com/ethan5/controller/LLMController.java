@@ -16,11 +16,8 @@ import java.util.List;
 public class LLMController {
     private final LLMService service;
 
-    @GetMapping("{genre1}/{genre2}/{genre3}")
-    public String generate(@PathVariable("genre1") String genre1,
-                           @PathVariable("genre2") String genre2,
-                           @PathVariable("genre3") String genre3) {
-        return service.generate(
-                new LLMRequest(List.of(genre1, genre2, genre3)));
+    @GetMapping("{id}")
+    public String generate(@PathVariable("id") String userId) {
+        return service.generate(userId);
     }
 }

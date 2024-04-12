@@ -39,4 +39,7 @@ public interface BackendService {
     Call<List<History>> getSummaries(@Path("id") String id,
                                 @Header("Authorization") String authorization);
 
+    @GET("v1/llm/{id}")
+    Call<String> getLLMResponse(@Path("id") String userid);
+
 }
