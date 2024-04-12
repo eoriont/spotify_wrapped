@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.spotifywrappedapp.R;
 import com.example.spotifywrappedapp.databinding.FragmentHomeBinding;
 import com.example.spotifywrappedapp.models.History;
 
@@ -37,7 +39,7 @@ public class HomeFragment extends Fragment {
         ListView listView = binding.lvItems;
 
         adapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_1,
+                R.layout.listview_item,
                 summaries);
 
         listView.setAdapter(adapter);

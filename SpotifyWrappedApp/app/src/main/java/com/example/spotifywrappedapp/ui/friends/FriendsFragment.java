@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.spotifywrappedapp.R;
 import com.example.spotifywrappedapp.databinding.FragmentFriendsBinding;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class FriendsFragment extends Fragment {
 
         // Initialize the adapter with the current array (empty at this point)
         adapter = new ArrayAdapter<>(getActivity(),
-                                    android.R.layout.simple_list_item_1,
+                                    R.layout.listview_item,
                                     friends);
 
         // Set the adapter to the ListView
