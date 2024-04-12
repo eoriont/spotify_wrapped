@@ -11,10 +11,10 @@ plugins {
 id 'com.android.application' version '8.2.1' apply false
 }
 
-//subprojects {
-//            apply from:"checkstyle.gradle"
-//            afterEvaluate {
-//                preBuild.dependsOn('checkstyle')
-//                check.dependsOn 'checkstyle'
-//            }
-//}
+subprojects {
+            apply from:"checkstyle.gradle"
+            afterEvaluate {
+                preBuild.dependsOn('checkstyle')
+                check.dependsOn 'checkstyle'
+            }
+}
