@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ArtistService {
     private final ArtistRepository repository;
-//    private final HistoryService historyService;
+
     private RestTemplate template;
 
     public Artist readArtist(String artistId) {
@@ -54,17 +54,13 @@ public class ArtistService {
                     .id(a.id())
                     .name(a.name())
                     .userId(id)
+                    .imageUrl(a.images().get(0).url())
                     .build();
 
             repository.save(artist);
             artists.add(artist);
         });
 
-//        historyService.createHistory(
-//                id,
-//                Optional.empty(),
-//                Optional.of(artists)
-//        );
         return artists;
     }
 }

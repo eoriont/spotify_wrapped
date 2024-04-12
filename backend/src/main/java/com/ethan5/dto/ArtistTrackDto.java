@@ -5,6 +5,7 @@ import java.util.List;
 public record ArtistTrackDto(
         String id,
         String name,
-        List<ImageDto> images
+        List<ImageDto> images,
+        AlbumDTO album
 ) {
 }
