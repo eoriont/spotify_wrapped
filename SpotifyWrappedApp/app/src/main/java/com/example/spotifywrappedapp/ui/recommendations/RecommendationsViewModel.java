@@ -1,73 +1,50 @@
 package com.example.spotifywrappedapp.ui.recommendations;
 
 import android.app.Application;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.spotifywrappedapp.UserData;
+import com.example.spotifywrappedapp.apiservices.BackendService;
+import com.example.spotifywrappedapp.apiservices.BackendServiceSingleton;
+import com.example.spotifywrappedapp.models.RecDTO;
+import com.example.spotifywrappedapp.utils.RetrofitUtils;
 
-import java.io.IOException;
+import java.util.List;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import retrofit2.Call;
+
 
 public class RecommendationsViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<String> mText;
+    private final MutableLiveData<List<RecDTO>> mRecs;
     private Application application;
 
     public RecommendationsViewModel(Application app) {
         super(app);
         this.application = app;
-        mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mRecs = new MutableLiveData<>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<List<RecDTO>> getRecs() {
+        return mRecs;
     }
 
 
-    public void performNetworkRequest() {
-        mText.setValue("Loading...");
-
+    public void getRecommendations() {
         UserData userData = new UserData(application);
         String id = userData.getId();
 
-        final Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/v1/recommendation/" + id)
-                .get()
-                .addHeader("Authorization", "Bearer " + userData.getToken())
-                .build();
+        BackendService service = BackendServiceSingleton.getBackendService();
+        Call<List<RecDTO>> call = service.getRecommendations(
+                userData.getToken(), userData.getId());
+        RetrofitUtils.toCompletableFuture(call)
+                .thenAccept(v -> {
+                    mRecs.postValue(v);
+                })
+                .exceptionally(ex -> null);
 
-        OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call,
-                                  @NonNull IOException e) {
-                Log.d("backend", "failure! " + e.getMessage());
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call,
-                                   @NonNull Response response) {
-                if (response.isSuccessful()) {
-                    try {
-                        String res = response.body().string();
-                        Log.d("backend", res);
-                        mText.postValue(res);
-                    } catch (Exception e) {
-                        Log.d("backend", Log.getStackTraceString(e));
-                    }
-                }
-            }
-        });
     }
 }
