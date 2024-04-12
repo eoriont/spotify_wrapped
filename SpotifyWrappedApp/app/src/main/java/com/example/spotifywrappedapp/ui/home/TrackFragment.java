@@ -76,18 +76,12 @@ public class TrackFragment extends Fragment {
                     return null;
                 });
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment
-                        .findNavController(TrackFragment.this)
-                        .navigate(
-                                TrackFragmentDirections
-                                        .actionTrackFragmentToArtistFragment()
-                                        .setHistory(history)
-                        );
-            }
-        });
+        view.setOnClickListener(v -> NavHostFragment
+                .findNavController(TrackFragment.this)
+                .navigate(TrackFragmentDirections
+                                .actionTrackFragmentToArtistFragment()
+                                .setHistory(history))
+        );
     }
 
     @Override

@@ -79,15 +79,10 @@ public class ArtistFragment extends Fragment {
                     return null;
                 });
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment
-                        .findNavController(ArtistFragment.this)
-                        .navigate(ArtistFragmentDirections
-                                .actionArtistFragmentToHomeFragment());
-            }
-        });
+        view.setOnClickListener(v -> NavHostFragment
+                .findNavController(ArtistFragment.this)
+                .navigate(ArtistFragmentDirections
+                        .actionArtistFragmentToHomeFragment()));
     }
 
     @Override

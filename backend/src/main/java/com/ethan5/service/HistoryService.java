@@ -69,6 +69,10 @@ public class HistoryService {
         return repository.findByUserId(userId);
     }
 
+    public History getLatest(String userId) {
+        return repository.findByUserId(userId).get(0);
+    }
+
     public List<History> generateHistory(String userId, String bearerToken) {
         // generate 10 histories
         System.out.println(bearerToken);

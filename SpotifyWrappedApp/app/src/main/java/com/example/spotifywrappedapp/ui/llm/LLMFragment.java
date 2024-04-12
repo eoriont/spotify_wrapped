@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.spotifywrappedapp.databinding.ActivityLlmUiBinding;
-import com.example.spotifywrappedapp.ui.notifications.LLMViewModel;
 
 public class LLMFragment extends Fragment {
     private ActivityLlmUiBinding binding;
