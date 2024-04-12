@@ -7,7 +7,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +34,7 @@ public class RecommendationService {
                 url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<RecDTO>>() {}
+                new ParameterizedTypeReference<List<RecDTO>>() { }
         ).getBody();
 
         System.out.println(list);
