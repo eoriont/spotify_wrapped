@@ -10,16 +10,63 @@
         android:orientation="vertical"
         android:background="#141414">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/textLayout"
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white"
-            android:textSize="24sp"
-            android:theme="@style/TextStyle">
+            android:gravity="center"
+            android:orientation="vertical">
 
-        </com.google.android.material.textfield.TextInputEditText>
+        <TextView
+            android:layout_width="296dp"
+            android:layout_height="wrap_content"
+            android:text="Update your username or password:"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/usernameLayout"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/white"
+            android:hint="Username"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@null" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/passwordLayout"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/white"
+            android:hint="Password"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@null" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/buttonLayout1"
@@ -33,7 +80,7 @@
                 android:id="@+id/buttonUpdateAccount"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0DBC14"
+                android:backgroundTint="#344CCF"
                 android:text="Update Account"
                 android:textSize="20dp" />
 
