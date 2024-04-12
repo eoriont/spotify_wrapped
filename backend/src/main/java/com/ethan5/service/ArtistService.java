@@ -57,8 +57,11 @@ public class ArtistService {
                     .imageUrl(a.images().get(0).url())
                     .build();
 
-            repository.save(artist);
             artists.add(artist);
+
+            if (!artists.contains(artist)) {
+                repository.saveAndFlush(artist);
+            }
         });
 
         return artists;

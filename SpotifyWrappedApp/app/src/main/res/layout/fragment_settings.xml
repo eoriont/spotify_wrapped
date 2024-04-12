@@ -19,36 +19,16 @@
             android:orientation="vertical">
 
         <TextView
+            android:id="@+id/header"
             android:layout_width="296dp"
             android:layout_height="wrap_content"
-            android:text="Update your username or password:"
+            android:text="Update your account info:"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/usernameLayout"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="300sp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:drawablePadding="5dp"
-            android:drawableTint="@color/white"
-            android:hint="Username"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textCursorDrawable="@null" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/passwordLayout"
+            android:id="@+id/firstNameLayout"
             android:layout_marginTop="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,16 +36,37 @@
             android:orientation="vertical" >
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/firstName"
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:drawablePadding="5dp"
             android:drawableTint="@color/white"
-            android:hint="Password"
+            android:hint="First Name"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textCursorDrawable="@null" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lastNameLayout"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/lastName"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/white"
+                android:hint="Last Name"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null" />
         </RelativeLayout>
 
         <RelativeLayout

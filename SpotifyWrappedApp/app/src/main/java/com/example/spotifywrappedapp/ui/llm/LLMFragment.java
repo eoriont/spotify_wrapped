@@ -26,7 +26,6 @@ public class LLMFragment extends Fragment {
         viewModel.getText().observe(getViewLifecycleOwner(), text::setText);
         viewModel.performNetworkRequest();
 
-
         return root;
     }
 

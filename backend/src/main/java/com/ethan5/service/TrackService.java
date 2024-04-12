@@ -46,8 +46,6 @@ public class TrackService {
         List<Track> tracks = new ArrayList<>();
 
         res.tracks().forEach(t -> {
-            // Use t.album().images() since spotify track
-            // api doesn't return images directly
             Track track = Track
                     .builder()
                     .userId(id)
@@ -56,11 +54,11 @@ public class TrackService {
                     .imageUrl(t.album().images().get(0).url())
                     .build();
 
-            if (repository.findById(t.id()).isEmpty()) {
-                repository.save(track);
-            }
-
             tracks.add(track);
+
+            if (!tracks.contains(track)) {
+                repository.saveAndFlush(track);
+            }
         });
 
         return tracks;
