@@ -42,9 +42,10 @@ public class LLMService {
 
         String prompt = String.format(
                 "Here are the titles of 3 of my favorite songs: %s, %s, and %s."
-                        + "Based on the supposed genre of these songs, describe how someone like me tends to "
-                        + "act/think/dress. Limit to 40 words, and respond as if you were provided the genres"
-                        + " instead of the songs.",
+                    + "Based on the supposed genre of these songs, describe "
+                    + "how someone like me tends to "
+                    + "act/think/dress. Limit to 40 words, and respond as if "
+                    + "you were provided the genres instead of the songs.",
                 t1.getName(), t2.getName(), t3.getName()
         );
         OpenAIRequest body = new OpenAIRequest(
