@@ -39,9 +39,10 @@ public class RecommendationsViewModel extends AndroidViewModel {
 
         BackendService service = BackendServiceSingleton.getBackendService();
         Call<List<RecDTO>> call = service.getRecommendations(
-                userData.getToken(), userData.getId());
+                userData.getToken(), id);
         RetrofitUtils.toCompletableFuture(call)
                 .thenAccept(v -> {
+                    System.out.println(v);
                     mRecs.postValue(v);
                 })
                 .exceptionally(ex -> null);

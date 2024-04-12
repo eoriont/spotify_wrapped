@@ -19,8 +19,9 @@ public class RecommendationService {
 
     public List<RecDTO> getRecommendations(String id, String bearerToken) {
         String apiUrl = "https://colbyb1123.pythonanywhere.com/";
+        System.out.println(bearerToken);
         String queryStr = trackService
-                .readTopTracks(id, bearerToken, 3, 0)
+                .readTopTracks(id, "Bearer " + bearerToken, 3, 0)
                 .stream()
                 .map(t -> String.format("data=%s", t.getName()))
                 .collect(Collectors.joining("&"));
@@ -28,19 +29,16 @@ public class RecommendationService {
 
         // The first item is the reference song,
         // the rest are the recommendations
-//        List<RecDTO> list = template.exchange(
         // if this actually returns a string "No Input" there was
         // an error on the backend
-        String list = template.exchange(
+        List<RecDTO> list = template.exchange(
                 url,
                 HttpMethod.GET,
                 null,
-                String.class
-//                new ParameterizedTypeReference<List<RecDTO>>() {}
+                new ParameterizedTypeReference<List<RecDTO>>() {}
         ).getBody();
 
         System.out.println(list);
-//        return list;
-        return new ArrayList<>();
+        return list;
     }
 }
