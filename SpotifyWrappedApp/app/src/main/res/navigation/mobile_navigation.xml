@@ -40,6 +40,12 @@
         tools:layout="@layout/activity_llm_ui" />
 
     <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.spotifywrappedapp.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
         android:id="@+id/trackFragment"
         android:name="com.example.spotifywrappedapp.ui.home.TrackFragment"
         android:label="Top Tracks!">

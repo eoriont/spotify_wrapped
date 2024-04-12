@@ -25,4 +25,9 @@
         android:id="@+id/navigation_llm"
         android:icon="@android:drawable/ic_menu_view"
         android:title="@string/title_llm" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/title_settings" />
 </menu>

@@ -42,4 +42,6 @@ public interface BackendService {
     @GET("v1/llm/{id}")
     Call<String> getLLMResponse(@Path("id") String userid);
 
+    @DELETE("v1/user/{id}")
+    Call<Void> deleteUser(@Path("id") String id);
 }
