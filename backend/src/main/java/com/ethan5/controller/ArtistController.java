@@ -18,6 +18,11 @@ import java.util.List;
 public class ArtistController {
     private final ArtistService service;
 
+    @GetMapping("{artistId}")
+    public Artist readArtist(@PathVariable("artistId") String artistId) {
+        return service.readArtist(artistId);
+    }
+
     @GetMapping("{id}/top-artists")
     public List<Artist> readTopArtists(
             @PathVariable("id") String id,

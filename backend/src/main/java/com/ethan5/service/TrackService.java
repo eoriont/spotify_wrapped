@@ -22,6 +22,10 @@ public class TrackService {
 //    private final HistoryService historyService;
     private RestTemplate template;
 
+    public Track readTrack(String trackId) {
+        return repository.findById(trackId).get();
+    }
+
     public List<Track> readTopTracks(String id,
                                      String bearerToken,
                                      int limit, int offset) {

@@ -22,6 +22,10 @@ public class ArtistService {
 //    private final HistoryService historyService;
     private RestTemplate template;
 
+    public Artist readArtist(String artistId) {
+        return repository.findById(artistId).get();
+    }
+
     public List<Artist> readTopArtists(String id, String bearerToken,
                                        int limit, int offset) {
         String url = String.format(

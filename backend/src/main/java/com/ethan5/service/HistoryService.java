@@ -37,13 +37,15 @@ public class HistoryService {
             history.setTrack2Id(tracks.get().get(1).getId());
             history.setTrack3Id(tracks.get().get(2).getId());
 
-            if (latestHistory != null) {
+            if (!artists.isPresent() && latestHistory != null) {
                 history.setArtist1Id(latestHistory.getArtist1Id());
                 history.setArtist2Id(latestHistory.getArtist2Id());
                 history.setArtist3Id(latestHistory.getArtist3Id());
             }
-        } else if (artists.isPresent()) {
-            if (latestHistory != null) {
+        }
+
+        if (artists.isPresent()) {
+            if (!tracks.isPresent() && latestHistory != null) {
                 history.setTrack1Id(latestHistory.getTrack1Id());
                 history.setTrack2Id(latestHistory.getTrack2Id());
                 history.setTrack3Id(latestHistory.getTrack3Id());

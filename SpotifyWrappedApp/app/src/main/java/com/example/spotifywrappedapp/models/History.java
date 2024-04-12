@@ -2,8 +2,10 @@ package com.example.spotifywrappedapp.models;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 
-public class History {
+
+public class History implements Serializable {
 
     private Long id;
 //
