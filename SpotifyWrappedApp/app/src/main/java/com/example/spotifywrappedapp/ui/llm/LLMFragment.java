@@ -10,16 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.spotifywrappedapp.databinding.ActivityLlmUiBinding;
+import com.example.spotifywrappedapp.databinding.FragmentLlmUiBinding;
 
 public class LLMFragment extends Fragment {
-    private ActivityLlmUiBinding binding;
+    private FragmentLlmUiBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         LLMViewModel viewModel =
                 new ViewModelProvider(this).get(LLMViewModel.class);
-        binding = ActivityLlmUiBinding.inflate(inflater, container, false);
+        binding = FragmentLlmUiBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         TextView text = binding.res;

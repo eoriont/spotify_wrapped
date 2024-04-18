@@ -46,6 +46,8 @@ public class TrackService {
         List<Track> tracks = new ArrayList<>();
 
         res.tracks().forEach(t -> {
+            // Use t.album().images() since spotify track api
+            // doesn't return images directly
             Track track = Track
                     .builder()
                     .userId(id)

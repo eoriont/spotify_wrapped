@@ -61,7 +61,8 @@ public class ArtistFragment extends Fragment {
                         .actionArtistFragmentToHomeFragment()));
     }
 
-    public void inflateArtist(String artistId, TextView textView,
+    public void inflateArtist(String artistId,
+                              TextView textView,
                               ImageView imageView) {
         BackendService service = BackendServiceSingleton.getBackendService();
         Call<Artist> artist = service.readArtist(artistId);

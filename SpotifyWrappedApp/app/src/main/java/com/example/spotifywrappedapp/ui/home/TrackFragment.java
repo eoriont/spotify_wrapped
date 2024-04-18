@@ -58,13 +58,16 @@ public class TrackFragment extends Fragment {
         view.setOnClickListener(v -> NavHostFragment
                 .findNavController(TrackFragment.this)
                 .navigate(TrackFragmentDirections
-                                .actionTrackFragmentToArtistFragment()
-                                .setHistory(history))
+                        .actionTrackFragmentToArtistFragment()
+                        .setHistory(history))
         );
     }
 
-    public void inflateTrack(String trackId, TextView textView,
-                             ImageView imageView) {
+    public void inflateTrack(
+            String trackId,
+            TextView textView,
+            ImageView imageView
+    ) {
         BackendService service = BackendServiceSingleton.getBackendService();
         Call<Track> track1Call = service.readTrack(trackId);
         RetrofitUtils.toCompletableFuture(track1Call)
