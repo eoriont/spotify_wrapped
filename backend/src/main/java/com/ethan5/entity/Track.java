@@ -28,6 +28,4 @@ public class Track {
 
     @Column(nullable = false)
     private String userId;
-
-
 }

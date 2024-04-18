@@ -19,14 +19,17 @@ public class UserService {
     private final HistoryRepository historyRepository;
     private final TrackRepository trackRepository;
 
-    public String createUser(String id) {
-        User user = User.builder().id(id).build();
+    public String createUser(User user) {
         repository.save(user);
         return user.getId();
     }
 
     public User readUser(String id) {
         return repository.findById(id).orElse(null);
+    }
+
+    public User readUserByEmail(String email) {
+        return repository.findByEmail(email).orElse(null);
     }
 
     public User updateUser(String id, UpdateUserRequest req) {
