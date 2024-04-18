@@ -45,7 +45,7 @@ public class AuthService {
 
         boolean match = encoder.matches(req.password(), user.getPassword());
 
-        if (!match) { 
+        if (!match) {
             return null;
         }
 
