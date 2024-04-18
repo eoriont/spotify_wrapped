@@ -1,5 +1,6 @@
 package com.ethan5.controller;
 
+import com.ethan5.dto.RecDTO;
 import com.ethan5.service.RecommendationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -16,7 +19,7 @@ public class RecommendationController {
 
     // in the future, make this return a list of tracks instead of a string??
     @GetMapping("{id}")
-    public String getRecommendations(
+    public List<RecDTO> getRecommendations(
             @PathVariable("id") String id,
             @RequestHeader("Authorization") String bearerToken
     ) throws Exception {

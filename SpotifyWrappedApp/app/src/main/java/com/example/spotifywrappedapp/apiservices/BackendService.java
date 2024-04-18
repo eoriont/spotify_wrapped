@@ -3,6 +3,7 @@ package com.example.spotifywrappedapp.apiservices;
 import com.example.spotifywrappedapp.models.Artist;
 import com.example.spotifywrappedapp.models.Friendship;
 import com.example.spotifywrappedapp.models.History;
+import com.example.spotifywrappedapp.models.RecDTO;
 import com.example.spotifywrappedapp.models.Track;
 import com.example.spotifywrappedapp.models.UpdateUserRequest;
 import com.example.spotifywrappedapp.models.User;
@@ -41,7 +42,7 @@ public interface BackendService {
 
     @GET("v1/history/{id}")
     Call<List<History>> getSummaries(@Path("id") String id,
-                                @Header("Authorization") String authorization);
+                        @Header("Authorization") String authorization);
 
     @GET("v1/llm/{id}")
     Call<String> getLLMResponse(@Path("id") String userid);
@@ -55,4 +56,9 @@ public interface BackendService {
 
     @DELETE("v1/user/{id}")
     Call<Void> deleteUser(@Path("id") String id);
+
+    @GET("v1/recommendation/{id}")
+    Call<List<RecDTO>> getRecommendations(
+            @Header("Authorization") String authorization,
+            @Path("id") String id);
 }
