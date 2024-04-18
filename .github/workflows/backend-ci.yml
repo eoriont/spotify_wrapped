@@ -22,7 +22,7 @@ jobs:
         working-directory: ./backend/src/main/resources
         run: |
           touch application.properties
-          echo "spring.application.name=personal-website-api" >> ./application.properties
+          echo "spring.application.name=cs-2340-p2-api" >> ./application.properties
           echo "spring.datasource.url=${{ secrets.API_SPRING_DATASOURCE_URL }}" >> ./application.properties
           echo "spring.datasource.username=${{ secrets.API_SPRING_DATASOURCE_USERNAME }}" >> ./application.properties
           echo "spring.datasource.password=${{ secrets.API_SPRING_DATASOURCE_PASSWORD }}" >> ./application.properties
