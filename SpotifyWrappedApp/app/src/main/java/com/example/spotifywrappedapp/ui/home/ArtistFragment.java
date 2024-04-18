@@ -1,6 +1,7 @@
 package com.example.spotifywrappedapp.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
+import com.example.spotifywrappedapp.R;
 import com.example.spotifywrappedapp.apiservices.BackendService;
 import com.example.spotifywrappedapp.apiservices.BackendServiceSingleton;
 import com.example.spotifywrappedapp.databinding.ActivityFrame4Binding;
 import com.example.spotifywrappedapp.models.Artist;
 import com.example.spotifywrappedapp.models.History;
+import com.example.spotifywrappedapp.models.Track;
 import com.example.spotifywrappedapp.utils.RetrofitUtils;
 
 import retrofit2.Call;
@@ -61,8 +64,7 @@ public class ArtistFragment extends Fragment {
                         .actionArtistFragmentToHomeFragment()));
     }
 
-    public void inflateArtist(String artistId, TextView textView,
-                              ImageView imageView) {
+    public void inflateArtist(String artistId, TextView textView, ImageView imageView) {
         BackendService service = BackendServiceSingleton.getBackendService();
         Call<Artist> artist = service.readArtist(artistId);
         RetrofitUtils.toCompletableFuture(artist)
