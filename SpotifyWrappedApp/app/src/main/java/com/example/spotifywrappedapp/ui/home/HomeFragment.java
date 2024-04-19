@@ -37,10 +37,6 @@ public class HomeFragment extends Fragment {
 
         ListView listView = binding.lvItems;
 
-//        adapter = new ArrayAdapter<>(getActivity(),
-//                R.layout.listview_item,
-//                R.id.text_view,
-//                summaries);
         adapter = new CustomAdapter(getActivity(), summaries,
                 this::onItemClick);
 
@@ -53,9 +49,10 @@ public class HomeFragment extends Fragment {
             adapter.notifyDataSetChanged();
         });
 
+        binding.btnNew.setOnClickListener(v -> {
+            mViewModel.newHistory();
+        });
 
-//        listView.setOnItemClickListener(this::onItemClick);
-//
         return root;
     }
 
@@ -84,4 +81,5 @@ public class HomeFragment extends Fragment {
         mViewModel.fetchSummaries();
         adapter.notifyDataSetChanged();
     }
+
 }

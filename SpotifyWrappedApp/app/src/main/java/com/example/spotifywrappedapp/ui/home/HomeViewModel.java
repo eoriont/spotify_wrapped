@@ -13,6 +13,8 @@ import com.example.spotifywrappedapp.apiservices.BackendService;
 import com.example.spotifywrappedapp.apiservices.BackendServiceSingleton;
 import com.example.spotifywrappedapp.models.History;
 import com.example.spotifywrappedapp.utils.RetrofitUtils;
+
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,6 +41,7 @@ public class HomeViewModel extends AndroidViewModel {
         RetrofitUtils.toCompletableFuture(call)
                 .thenAccept(newSummaries -> {
                     Log.d("SUMMARIES", "Successfully retrieved summaries!");
+                    Collections.reverse(newSummaries);
                     summaries.postValue(newSummaries);
                 })
                 .exceptionally(ex -> {
@@ -48,6 +51,24 @@ public class HomeViewModel extends AndroidViewModel {
                 });
     }
 
+    public void newHistory() {
+        UserData userData = new UserData(application);
+        String id = userData.getId();
+
+        BackendService service = BackendServiceSingleton.getBackendService();
+        Call<History> call = service.newSummary(id, userData.getToken());
+        RetrofitUtils.toCompletableFuture(call)
+                .thenAccept(h -> {
+                    Log.d("SUMMARIES",
+                            "Successfully made new history!" + h.toString());
+                    fetchSummaries();
+                })
+                .exceptionally(ex -> {
+                    Log.e("SUMMARIES",
+                            Log.getStackTraceString(new Exception(ex)));
+                    return null;
+                });
+    }
 
     public LiveData<List<History>> getSummaries() {
         return summaries;
