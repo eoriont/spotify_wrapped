@@ -54,7 +54,9 @@ public class SettingsFragment extends Fragment {
 
                         viewModel.updateUser(
                                 binding.firstName.getText().toString(),
-                                binding.lastName.getText().toString()
+                                binding.lastName.getText().toString(),
+                                binding.email.getText().toString(),
+                                binding.password.getText().toString()
                         );
                     }
                 });
