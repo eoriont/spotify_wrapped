@@ -31,7 +31,7 @@ public class AuthService {
                 LoginResponse.class
         ).getBody();
 
-        User user = service.readUser(res.id());
+        User user = service.readUserByEmail(req.email());
 
         if (user == null) {
             user = User.builder()
@@ -43,7 +43,8 @@ public class AuthService {
             return service.createUser(user);
         }
 
-        boolean match = encoder.matches(req.password(), user.getPassword());
+        boolean match = encoder.matches(req.password(), user.getPassword())
+                && user.getId().equals(res.id());
 
         if (!match) {
             return null;

@@ -5,11 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.spotifywrappedapp.apiservices.BackendService;
 import com.example.spotifywrappedapp.apiservices.BackendServiceSingleton;
+import com.example.spotifywrappedapp.databinding.ActivityMainBinding;
+import com.example.spotifywrappedapp.models.AuthDTO;
 import com.example.spotifywrappedapp.utils.RetrofitUtils;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
@@ -25,15 +28,31 @@ public class MainActivity extends AppCompatActivity {
     public static final int AUTH_CODE_REQUEST_CODE = 1;
 
     private String mAccessToken, mAccessCode;
-    private Call mCall;
+    private ActivityMainBinding binding;
+
+    // Sorry kinda weird :(
+    private AuthDTO currentAuthInfo = new AuthDTO("", "", "");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        Button signInBtn = findViewById(R.id.buttonAuthSignIn);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        Button signInBtn = binding.buttonAuthSignIn;
         signInBtn.setOnClickListener((v) -> {
+            String email = binding.email.getText().toString();
+            String password = binding.password.getText().toString();
+
+            if (email.equals("") || password.equals("")) {
+                Log.d("LOGIN", "Enter password!");
+                return;
+            }
+
+            this.currentAuthInfo = new AuthDTO(email, password,
+                    "");
+
             getToken();
         });
     }
@@ -46,18 +65,6 @@ public class MainActivity extends AppCompatActivity {
                         AUTH_TOKEN_REQUEST_CODE,
                         request);
     }
-
-    public void getCode() {
-        final AuthorizationRequest request =
-                getAuthenticationRequest(
-                        AuthorizationResponse.Type.CODE);
-        AuthorizationClient
-                .openLoginActivity(
-                        MainActivity.this,
-                        AUTH_CODE_REQUEST_CODE,
-                        request);
-    }
-
 
     @Override
     protected void onActivityResult(
@@ -82,12 +89,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getUserProfile() {
+        this.currentAuthInfo.setBearerToken("Bearer " + mAccessToken);
+        Log.d("USER", "getUserProfile: " + currentAuthInfo.getEmail());
 
         BackendService service = BackendServiceSingleton.getBackendService();
-        Call<String> call = service.login("Bearer " + mAccessToken);
+        Call<String> call = service.login(this.currentAuthInfo);
 
         RetrofitUtils.toCompletableFuture(call)
                 .thenAccept(userId -> {
+                    if (userId.equals("")) {
+                        Log.d("LOGIN", "Login failed!!!");
+                        Toast.makeText(this, "Incorrect Credentials!",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     Log.d("LOGIN", "Successfully logged in " + userId);
                     UserData userData = new UserData(getApplication());
                     userData.setId(userId);
@@ -120,16 +135,4 @@ public class MainActivity extends AppCompatActivity {
         return Uri.parse(REDIRECT_URI);
     }
 
-    private void cancelCall() {
-        if (mCall != null) {
-            mCall.cancel();
-        }
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        cancelCall();
-        super.onDestroy();
-    }
 }
