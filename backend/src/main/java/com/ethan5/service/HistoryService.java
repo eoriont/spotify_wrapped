@@ -88,7 +88,8 @@ public class HistoryService {
         return histories;
     }
 
-    public History genOneHistory(String userId, String bearerToken, int i, String idx) {
+    public History genOneHistory(String userId, String bearerToken,
+                                 int i, String idx) {
 
         List<Track> tracks = trackService.readTopTracks(
                 userId, "Bearer " + bearerToken,
