@@ -80,6 +80,12 @@ public class SettingsViewModel extends AndroidViewModel {
                 .exceptionally(ex -> null);
     }
 
+    public void resetUserData() {
+        UserData userData = new UserData(application);
+        userData.setToken(null);
+        userData.setId(null);
+    }
+
     public void deleteUser() {
         UserData userData = new UserData(application);
         String id = userData.getId();
