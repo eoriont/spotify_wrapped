@@ -54,13 +54,14 @@ public class SettingsViewModel extends AndroidViewModel {
                 .exceptionally(ex -> null);
     }
 
-    public void updateUser(String firstName, String lastName) {
+    public void updateUser(String firstName, String lastName,
+                           String email, String password) {
         UserData userData = new UserData(application);
         String id = userData.getId();
 
         BackendService service = BackendServiceSingleton.getBackendService();
         Call<User> call = service.updateUser(id,
-                new UpdateUserRequest(firstName, lastName));
+                new UpdateUserRequest(firstName, lastName, email, password));
         RetrofitUtils.toCompletableFuture(call)
                 .thenAccept(u -> {
                     if (u.getFirstName() == null || u.getLastName() == null) {
@@ -77,6 +78,12 @@ public class SettingsViewModel extends AndroidViewModel {
                     }
                 })
                 .exceptionally(ex -> null);
+    }
+
+    public void resetUserData() {
+        UserData userData = new UserData(application);
+        userData.setToken(null);
+        userData.setId(null);
     }
 
     public void deleteUser() {

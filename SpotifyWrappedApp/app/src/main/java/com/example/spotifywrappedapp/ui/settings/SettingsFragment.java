@@ -42,34 +42,37 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.buttonUpdateAccount
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        viewModel
-                                .getText()
-                                .observe(
-                                        getViewLifecycleOwner(),
-                                        binding.header::setText
-                                );
+                .setOnClickListener(v -> {
+                    viewModel
+                            .getText()
+                            .observe(
+                                    getViewLifecycleOwner(),
+                                    binding.header::setText
+                            );
 
-                        viewModel.updateUser(
-                                binding.firstName.getText().toString(),
-                                binding.lastName.getText().toString()
-                        );
-                    }
+                    viewModel.updateUser(
+                            binding.firstName.getText().toString(),
+                            binding.lastName.getText().toString(),
+                            binding.email.getText().toString(),
+                            binding.password.getText().toString()
+                    );
                 });
 
         binding.buttonDeleteAccount
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        viewModel.deleteUser();
+                .setOnClickListener(v -> {
+                    viewModel.deleteUser();
 
-                        Intent intent =
-                                new Intent(getActivity(), MainActivity.class);
-                        getActivity().startActivity(intent);
-                    }
+                    Intent intent =
+                            new Intent(getActivity(), MainActivity.class);
+                    getActivity().startActivity(intent);
                 });
+
+        binding.buttonSignOut.setOnClickListener(v -> {
+            viewModel.resetUserData();
+            Intent intent =
+                    new Intent(getActivity(), MainActivity.class);
+            getActivity().startActivity(intent);
+        });
     }
 
     @Override
