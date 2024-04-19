@@ -53,9 +53,9 @@ public class TrackFragment extends Fragment {
                 .fromBundle(getArguments()).getHistory();
         Log.d("TRACKS", history.toString());
 
-        inflateTrack(history.getTrack1Id(), track1, img1);
-        inflateTrack(history.getTrack2Id(), track2, img2);
-        inflateTrack(history.getTrack3Id(), track3, img3);
+        inflateTrack(history.getTrack1Id(), track1, img1, 1);
+        inflateTrack(history.getTrack2Id(), track2, img2, 2);
+        inflateTrack(history.getTrack3Id(), track3, img3, 1 + 2);
 
         view.setOnClickListener(v -> NavHostFragment
                 .findNavController(TrackFragment.this)
@@ -68,13 +68,14 @@ public class TrackFragment extends Fragment {
     public void inflateTrack(
             String trackId,
             TextView textView,
-            ImageView imageView
+            ImageView imageView,
+            int i
     ) {
         BackendService service = BackendServiceSingleton.getBackendService();
         Call<Track> track1Call = service.readTrack(trackId);
         RetrofitUtils.toCompletableFuture(track1Call)
                 .thenAccept(t -> {
-                    textView.setText(t.getName());
+                    textView.setText("#" + i + " " + t.getName());
                     Glide.with(this)
                             .load(t.getImageUrl())
                             .into(imageView);
