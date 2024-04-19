@@ -58,7 +58,7 @@ public class TrackService {
 
             tracks.add(track);
 
-            if (!tracks.contains(track)) {
+            if (!repository.existsById(track.getId())) {
                 repository.saveAndFlush(track);
             }
         });

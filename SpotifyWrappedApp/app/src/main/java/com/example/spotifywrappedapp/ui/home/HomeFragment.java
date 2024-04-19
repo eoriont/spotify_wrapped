@@ -1,6 +1,7 @@
 package com.example.spotifywrappedapp.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.spotifywrappedapp.R;
 import com.example.spotifywrappedapp.databinding.FragmentHomeBinding;
 import com.example.spotifywrappedapp.models.History;
 
@@ -37,9 +37,12 @@ public class HomeFragment extends Fragment {
 
         ListView listView = binding.lvItems;
 
-        adapter = new ArrayAdapter<>(getActivity(),
-                R.layout.listview_item,
-                summaries);
+//        adapter = new ArrayAdapter<>(getActivity(),
+//                R.layout.listview_item,
+//                R.id.text_view,
+//                summaries);
+        adapter = new CustomAdapter(getActivity(), summaries,
+                this::onItemClick);
 
         listView.setAdapter(adapter);
 
@@ -51,8 +54,8 @@ public class HomeFragment extends Fragment {
         });
 
 
-        listView.setOnItemClickListener(this::onItemClick);
-
+//        listView.setOnItemClickListener(this::onItemClick);
+//
         return root;
     }
 
@@ -66,6 +69,7 @@ public class HomeFragment extends Fragment {
     public boolean onItemClick(
             AdapterView<?> adapterView, View item, int pos, long id) {
         History h = summaries.get(pos);
+        Log.d("HISTORY", "History " + pos + " clicked!" + h.toString());
 
         NavHostFragment.findNavController(HomeFragment.this)
                 .navigate(HomeFragmentDirections

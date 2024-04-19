@@ -59,7 +59,7 @@ public class ArtistService {
 
             artists.add(artist);
 
-            if (!artists.contains(artist)) {
+            if (!repository.existsById(artist.getId())) {
                 repository.saveAndFlush(artist);
             }
         });

@@ -1,6 +1,7 @@
 package com.example.spotifywrappedapp.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class TrackFragment extends Fragment {
 
         History history = TrackFragmentArgs
                 .fromBundle(getArguments()).getHistory();
+        Log.d("TRACKS", history.toString());
 
         inflateTrack(history.getTrack1Id(), track1, img1);
         inflateTrack(history.getTrack2Id(), track2, img2);
