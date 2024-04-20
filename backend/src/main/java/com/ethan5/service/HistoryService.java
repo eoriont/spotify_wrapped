@@ -7,7 +7,9 @@ import com.ethan5.entity.Track;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,17 +80,30 @@ public class HistoryService {
         System.out.println(bearerToken);
         List<History> histories = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            List<Track> tracks = trackService.readTopTracks(
-                    userId, "Bearer " + bearerToken,
-                    3, 3 * i);
-            List<Artist> artists = artistService.readTopArtists(
-                    userId, "Bearer " + bearerToken,
-                    3, 3 * i);
-            History h = this.createHistory(userId, String.valueOf(i),
-                    Optional.of(tracks), Optional.of(artists));
+            String idx = userId + "'s History #" + i;
+            History h = genOneHistory(userId, bearerToken, i, idx);
             histories.add(h);
         }
 
         return histories;
+    }
+
+    public History genOneHistory(String userId, String bearerToken,
+                                 int i, String idx) {
+
+        List<Track> tracks = trackService.readTopTracks(
+                userId, "Bearer " + bearerToken,
+                3, 3 * i);
+        List<Artist> artists = artistService.readTopArtists(
+                userId, "Bearer " + bearerToken,
+                3, 3 * i);
+        History h = this.createHistory(userId, idx,
+                Optional.of(tracks), Optional.of(artists));
+        return h;
+    }
+
+    public History newHistory(String userId, String bearerToken) {
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+        return genOneHistory(userId, bearerToken, 0, date);
     }
 }

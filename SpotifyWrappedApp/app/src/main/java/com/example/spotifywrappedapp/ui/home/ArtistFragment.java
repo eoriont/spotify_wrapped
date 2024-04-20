@@ -51,9 +51,9 @@ public class ArtistFragment extends Fragment {
         History history = ArtistFragmentArgs
                 .fromBundle(getArguments()).getHistory();
 
-        inflateArtist(history.getArtist1Id(), artist1, img1);
-        inflateArtist(history.getArtist2Id(), artist2, img2);
-        inflateArtist(history.getArtist3Id(), artist3, img3);
+        inflateArtist(history.getArtist1Id(), artist1, img1, 1);
+        inflateArtist(history.getArtist2Id(), artist2, img2, 2);
+        inflateArtist(history.getArtist3Id(), artist3, img3, 1 + 2);
 
         view.setOnClickListener(v -> NavHostFragment
                 .findNavController(ArtistFragment.this)
@@ -63,12 +63,13 @@ public class ArtistFragment extends Fragment {
 
     public void inflateArtist(String artistId,
                               TextView textView,
-                              ImageView imageView) {
+                              ImageView imageView,
+                              int i) {
         BackendService service = BackendServiceSingleton.getBackendService();
         Call<Artist> artist = service.readArtist(artistId);
         RetrofitUtils.toCompletableFuture(artist)
                 .thenAccept(a -> {
-                    textView.setText(a.getName());
+                    textView.setText("#" + i + " " + a.getName());
                     Glide.with(this)
                             .load(a.getImageUrl())
                             .into(imageView);
