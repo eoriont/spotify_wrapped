@@ -17,11 +17,6 @@
         android:title="@string/title_recommendations" />
 
     <item
-        android:id="@+id/navigation_friends"
-        android:icon="@android:drawable/ic_menu_myplaces"
-        android:title="@string/title_friends" />
-
-    <item
         android:id="@+id/navigation_llm"
         android:icon="@android:drawable/ic_menu_view"
         android:title="@string/title_llm" />
