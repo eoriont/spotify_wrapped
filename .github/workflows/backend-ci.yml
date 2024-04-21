@@ -27,6 +27,7 @@ jobs:
           echo "spring.datasource.username=${{ secrets.API_SPRING_DATASOURCE_USERNAME }}" >> ./application.properties
           echo "spring.datasource.password=${{ secrets.API_SPRING_DATASOURCE_PASSWORD }}" >> ./application.properties
           echo "spring.jpa.hibernate.ddl-auto=validate" >> ./application.properties
+          echo "openai.api-key=${{ secrets.API_OPENAI_API_KEY }}" >> ./application.properties
 
       - name: Build & Test
         working-directory: ./backend
